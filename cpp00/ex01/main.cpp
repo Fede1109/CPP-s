@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:37:08 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/04/25 17:22:47 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:56:32 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 #include "./Contact.hpp"
 #include "./PhoneBook.hpp"
 
+int	check_empty(std::string& str, int flag);
+
 //TODO: SPLIT FUNCTIONS AT THE END
-//TODO: If the user tries to add a 9th contact, replace the oldest one by the new one.
 void	show_full_contact(Contact contact)
 {
 	if (contact.first_name.empty())
@@ -75,35 +76,35 @@ void	print_value(std::string& str)
 	std::cout << str << "|";
 }
 
-int	check_empty(std::string& str, int flag)
+//? Necesario
+/* int	check_empty(std::string& str, int flag)
 {
 	do
 	{
 		switch (flag)
 		{
 		case 1:
-			std::cout << "Please introcude a first name:" << std::endl;
+			std::cout << "Please introduce a first name:" << std::endl;
 			break;
 		case 2:
-			std::cout << "Please introcude a last name:" << std::endl;
+			std::cout << "Please introduce a last name:" << std::endl;
 			break;
 		case 3:
-			std::cout << "Please introcude a nickname:" << std::endl;
+			std::cout << "Please introduce a nickname:" << std::endl;
 			break;
 		case 4:
-			std::cout << "Please introcude a phone number:" << std::endl;
+			std::cout << "Please introduce a phone number:" << std::endl;
 			break;
 		case 5:
-			std::cout << "Please introcude a Darkest secret:" << std::endl;
+			std::cout << "Please introduce a Darkest secret:" << std::endl;
 			break;
 		default:
 			break;
 		}
-		
 	}while(str.empty());
 	return (0);
 }
-
+ */
 void	show_contact(PhoneBook p_book)
 {
 	int			num;
@@ -112,7 +113,7 @@ void	show_contact(PhoneBook p_book)
 
 	num = 0;
 	std::cout << "---------------------------------------------"  << std::endl;
-	std::cout << "|     Index|" << "  1st name|" << " Last name|" << " Nickname |" << std::endl;
+	std::cout << "|     Index|" << "  1st name|" << " Last name|" << "  Nickname|" << std::endl;
 	std::cout << "|----------|----------|----------|----------|"  << std::endl;
 	for(int	i = 0; i < (int) sizeof(p_book.contacts) / (int) sizeof(p_book.contacts[0]); i++)
 	{
@@ -139,10 +140,12 @@ void	show_contact(PhoneBook p_book)
 		std::cout << '\n' << "That was not a number!" << std::endl << std::endl;
 	}	
 	if (num > 0 && num < 9)
-		show_full_contact(p_book.contacts[num - 1]);	
+		show_full_contact(p_book.contacts[num - 1]);
+	else
+		std::cout << '\n' << "Wrong index!" << std::endl << std::endl;
 }
 
-void	save_contact(PhoneBook *p_book)
+void	save_contact(PhoneBook *p_book, int &oldest)
 {
 	for (int i = 0; i < 8; ++i)
 	{
@@ -152,7 +155,12 @@ void	save_contact(PhoneBook *p_book)
 			break;
 		}
 		if (i == 7)
-			std::cout << "Phonebook is full. We'll replace the oldest one." << std::endl;
+		{
+			p_book->contacts[oldest] = new_contact();
+			oldest++;
+			if (oldest == 8)
+                oldest = 0; 			
+		}
 	}	
 }
 
@@ -179,8 +187,11 @@ void	create_menu()
 
 void	show_menu(std::string& str, PhoneBook p_book)
 {
+	Contact	contact;
 	int		choice;
-	Contact contact;
+	int		oldest;
+	
+	oldest = 0;
 	do
 	{
 		create_menu();
@@ -191,7 +202,8 @@ void	show_menu(std::string& str, PhoneBook p_book)
 		switch (choice)
 		{
 			case 1:
-				save_contact(&p_book);
+			
+				save_contact(&p_book, oldest);				
 				break ;
 			case 2:
 				show_contact(p_book);
@@ -206,6 +218,7 @@ void	show_menu(std::string& str, PhoneBook p_book)
 	} while (choice != 3);
 }
 
+//TODO: Fix when user introduce mukltiple words (main menu/adding new user)
 int main (int argc, char **argv)
 {
 	PhoneBook	p_book;
