@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:37:08 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/04/26 13:06:10 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:18:59 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@
 //TODO: SPLIT FUNCTIONS AT THE END
 void	show_full_contact(Contact contact)
 {
-	if (contact.first_name.empty())
+	if (contact.getFirstName().empty())
 	{
 		std::cout << "Nothing to see here 👀" << std::endl;
 		return ;
 	}
 	std::cout << "First name: ";
-	std::cout << contact.first_name << std::endl;
+	std::cout << contact.getFirstName() << std::endl;
 	std::cout << "Last name: ";
-	std::cout << contact.last_name << std::endl;
+	std::cout << contact.getLastName() << std::endl;
 	std::cout << "Nickname: ";
-	std::cout << contact.nickname << std::endl;
+	std::cout << contact.getNickname() << std::endl;
 	std::cout << "Phone number: ";
-	std::cout << contact.phone_number << std::endl;
+	std::cout << contact.getPhoneNumber() << std::endl;
 	std::cout << "Darkest secret: ";
-	std::cout << contact.darkest_secret << std::endl;
+	std::cout << contact.getDarkestSecret() << std::endl;
 }
 Contact	new_contact()
 {
@@ -44,24 +44,24 @@ Contact	new_contact()
 	std::string str;
 	std::cout << "First name:";
 	std::getline(std::cin, str);
-	contact.first_name = str;
+	contact.setFirstName(str);
 	std::cout << "Last name:";
 	std::getline(std::cin, str);
-	contact.last_name = str;
+	contact.setLastName(str);
 	std::cout << "Nickname:";
 	std::getline(std::cin, str);
-	contact.nickname = str;
+	contact.setNickname(str);
 	std::cout << "Phone number:";
 	std::getline(std::cin, str);
-	contact.phone_number = str;
+	contact.setPhoneNumber(str);
 	std::cout << "Darkest secret:";
 	std::getline(std::cin, str);
-	contact.darkest_secret = str;
+	contact.setDarkestSecret(str);
 	std::cout << std::endl;
 	return (contact);
 }
 
-void	print_value(std::string& str)
+void	print_value(std::string str)
 {
 	size_t	len;
 
@@ -111,7 +111,7 @@ void	print_value(std::string& str)
 	return (0);
 }
  */
-void	show_contact(PhoneBook p_book)
+void	show_contact(PhoneBook *p_book)
 {
 	int			num;
 	std::string	index;
@@ -121,14 +121,14 @@ void	show_contact(PhoneBook p_book)
 	std::cout << "---------------------------------------------"  << std::endl;
 	std::cout << "|     Index|" << "  1st name|" << " Last name|" << "  Nickname|" << std::endl;
 	std::cout << "|----------|----------|----------|----------|"  << std::endl;
-	for(int	i = 0; i < (int) sizeof(p_book.contacts) / (int) sizeof(p_book.contacts[0]); i++)
+	for(int	i = 0; i < (int) sizeof(p_book->contacts) / (int) sizeof(p_book->contacts[0]); i++)
 	{
 		std::cout << "|";
 		str = std::to_string(i + 1);
 		print_value(str);
-		print_value(p_book.contacts[i].first_name);
-		print_value(p_book.contacts[i].last_name);
-		print_value(p_book.contacts[i].nickname);
+		print_value(p_book->contacts[i].getFirstName());
+		print_value(p_book->contacts[i].getLastName());
+		print_value(p_book->contacts[i].getNickname());
 		std::cout << std::endl;
 		if (i != 7)
 			std::cout << "|----------|----------|----------|----------|"  << std::endl;
@@ -147,7 +147,7 @@ void	show_contact(PhoneBook p_book)
 		std::cout << std::endl << "That was not a number!" << std::endl << std::endl;
 	}	
 	if (num > 0 && num < 9)
-		show_full_contact(p_book.contacts[num - 1]);
+		show_full_contact(p_book->contacts[num - 1]);
 	else
 		std::cout << std::endl << "Wrong index!" << std::endl << std::endl;
 }
@@ -156,7 +156,7 @@ void	save_contact(PhoneBook *p_book, int &oldest)
 {
 	for (int i = 0; i < 8; ++i)
 	{
-		if (p_book->contacts[i].first_name.empty()) {
+		if (p_book->contacts[i].getFirstName().empty()) {
 			p_book->contacts[i] = new_contact();
 			std::cout << "Contact added" << std::endl;
 			break;
@@ -214,7 +214,7 @@ void	show_menu(PhoneBook p_book)
 				save_contact(&p_book, oldest);				
 				break ;
 			case 2:
-				show_contact(p_book);
+				show_contact(&p_book);
 				break ;
 			case 3:
 				std::cout << "Bye!" << std::endl;
