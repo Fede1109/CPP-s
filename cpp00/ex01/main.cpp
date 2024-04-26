@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:37:08 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/04/25 18:56:32 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:06:10 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "./Contact.hpp"
 #include "./PhoneBook.hpp"
 
-int	check_empty(std::string& str, int flag);
+// int	check_empty(std::string& str, int flag);
 
 //TODO: SPLIT FUNCTIONS AT THE END
 void	show_full_contact(Contact contact)
@@ -40,17 +40,23 @@ void	show_full_contact(Contact contact)
 Contact	new_contact()
 {
 	Contact contact;
-		
+	
+	std::string str;
 	std::cout << "First name:";
-	std::cin >> contact.first_name;
+	std::getline(std::cin, str);
+	contact.first_name = str;
 	std::cout << "Last name:";
-	std::cin >> contact.last_name;
+	std::getline(std::cin, str);
+	contact.last_name = str;
 	std::cout << "Nickname:";
-	std::cin >> contact.nickname;
+	std::getline(std::cin, str);
+	contact.nickname = str;
 	std::cout << "Phone number:";
-	std::cin >> contact.phone_number;
+	std::getline(std::cin, str);
+	contact.phone_number = str;
 	std::cout << "Darkest secret:";
-	std::cin >> contact.darkest_secret;
+	std::getline(std::cin, str);
+	contact.darkest_secret = str;
 	std::cout << std::endl;
 	return (contact);
 }
@@ -130,19 +136,20 @@ void	show_contact(PhoneBook p_book)
 	std::cout << "---------------------------------------------"  << std::endl;
 
 	std::cout << "Select an index between 1 and 8: ";
-	std::cin >> index;
+	std::getline(std::cin, str);
+	index = str;
 	try
 	{
 		num = std::stoi(index);
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << '\n' << "That was not a number!" << std::endl << std::endl;
+		std::cout << std::endl << "That was not a number!" << std::endl << std::endl;
 	}	
 	if (num > 0 && num < 9)
 		show_full_contact(p_book.contacts[num - 1]);
 	else
-		std::cout << '\n' << "Wrong index!" << std::endl << std::endl;
+		std::cout << std::endl << "Wrong index!" << std::endl << std::endl;
 }
 
 void	save_contact(PhoneBook *p_book, int &oldest)
@@ -159,9 +166,9 @@ void	save_contact(PhoneBook *p_book, int &oldest)
 			p_book->contacts[oldest] = new_contact();
 			oldest++;
 			if (oldest == 8)
-                oldest = 0; 			
+                oldest = 0;
 		}
-	}	
+	}
 }
 
 int	stringToInt(std::string& str)
@@ -185,7 +192,7 @@ void	create_menu()
 	std::cout << "Your option: ";
 }
 
-void	show_menu(std::string& str, PhoneBook p_book)
+void	show_menu(PhoneBook p_book)
 {
 	Contact	contact;
 	int		choice;
@@ -195,7 +202,8 @@ void	show_menu(std::string& str, PhoneBook p_book)
 	do
 	{
 		create_menu();
-		std::cin >> str;
+		std::string str;
+		std::getline(std::cin, str);
 		if (std::cin.eof()==1)
 			break ;
 		choice = stringToInt(str);		
@@ -218,16 +226,15 @@ void	show_menu(std::string& str, PhoneBook p_book)
 	} while (choice != 3);
 }
 
-//TODO: Fix when user introduce mukltiple words (main menu/adding new user)
 int main (int argc, char **argv)
 {
 	PhoneBook	p_book;
-	std::string	str;
+	//std::string	str;
 	if (argc > 1 || argv[1])
 	{
 		std::cerr << "This program doesn't acept arguments" << std::endl;
 		return (0);
 	}
-	show_menu(str, p_book);
+	show_menu(p_book);
 	return (0);
 }
