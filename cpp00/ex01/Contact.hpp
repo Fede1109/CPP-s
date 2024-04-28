@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:26:50 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/04/26 14:35:56 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:16:22 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,21 @@ class Contact
 		std::string	darkest_secret;
 	public:
 
-	std::string getFirstName(void);
-	std::string getLastName(void);
-	std::string getNickname(void);
-	std::string getPhoneNumber(void);
-	std::string getDarkestSecret(void);
+	std::string GetFirstName(void);
+	std::string GetLastName(void);
+	std::string GetNickname(void);
+	std::string GetPhoneNumber(void);
+	std::string GetDarkestSecret(void);
 
 
-	void setFirstName(std::string str);
+	void SetFirstName(std::string str);
 	void setLastName(std::string str);
 	void setNickname(std::string str);
-	void setPhoneNumber(std::string str);
-	void setDarkestSecret(std::string str);
+	void SetPhoneNumber(std::string str);
+	void SetDarkestSecret(std::string str);
+
+	Contact	new_contact(void);
+
 };
+
 # endif

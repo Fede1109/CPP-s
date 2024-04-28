@@ -6,60 +6,36 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:37:08 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/04/26 14:18:59 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:25:33 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-#include <vector>
+#include <cstring>
 #include "./Contact.hpp"
 #include "./PhoneBook.hpp"
-
-// int	check_empty(std::string& str, int flag);
 
 //TODO: SPLIT FUNCTIONS AT THE END
 void	show_full_contact(Contact contact)
 {
-	if (contact.getFirstName().empty())
+	if (contact.GetFirstName().empty())
 	{
 		std::cout << "Nothing to see here 👀" << std::endl;
 		return ;
 	}
 	std::cout << "First name: ";
-	std::cout << contact.getFirstName() << std::endl;
+	std::cout << contact.GetFirstName() << std::endl;
 	std::cout << "Last name: ";
-	std::cout << contact.getLastName() << std::endl;
+	std::cout << contact.GetLastName() << std::endl;
 	std::cout << "Nickname: ";
-	std::cout << contact.getNickname() << std::endl;
+	std::cout << contact.GetNickname() << std::endl;
 	std::cout << "Phone number: ";
-	std::cout << contact.getPhoneNumber() << std::endl;
+	std::cout << contact.GetPhoneNumber() << std::endl;
 	std::cout << "Darkest secret: ";
-	std::cout << contact.getDarkestSecret() << std::endl;
+	std::cout << contact.GetDarkestSecret() << std::endl;
 }
-Contact	new_contact()
-{
-	Contact contact;
-	
-	std::string str;
-	std::cout << "First name:";
-	std::getline(std::cin, str);
-	contact.setFirstName(str);
-	std::cout << "Last name:";
-	std::getline(std::cin, str);
-	contact.setLastName(str);
-	std::cout << "Nickname:";
-	std::getline(std::cin, str);
-	contact.setNickname(str);
-	std::cout << "Phone number:";
-	std::getline(std::cin, str);
-	contact.setPhoneNumber(str);
-	std::cout << "Darkest secret:";
-	std::getline(std::cin, str);
-	contact.setDarkestSecret(str);
-	std::cout << std::endl;
-	return (contact);
-}
+
 
 void	print_value(std::string str)
 {
@@ -82,35 +58,6 @@ void	print_value(std::string str)
 	std::cout << str << "|";
 }
 
-//? Necesario
-/* int	check_empty(std::string& str, int flag)
-{
-	do
-	{
-		switch (flag)
-		{
-		case 1:
-			std::cout << "Please introduce a first name:" << std::endl;
-			break;
-		case 2:
-			std::cout << "Please introduce a last name:" << std::endl;
-			break;
-		case 3:
-			std::cout << "Please introduce a nickname:" << std::endl;
-			break;
-		case 4:
-			std::cout << "Please introduce a phone number:" << std::endl;
-			break;
-		case 5:
-			std::cout << "Please introduce a Darkest secret:" << std::endl;
-			break;
-		default:
-			break;
-		}
-	}while(str.empty());
-	return (0);
-}
- */
 void	show_contact(PhoneBook *p_book)
 {
 	int			num;
@@ -126,9 +73,9 @@ void	show_contact(PhoneBook *p_book)
 		std::cout << "|";
 		str = std::to_string(i + 1);
 		print_value(str);
-		print_value(p_book->contacts[i].getFirstName());
-		print_value(p_book->contacts[i].getLastName());
-		print_value(p_book->contacts[i].getNickname());
+		print_value(p_book->contacts[i].GetFirstName());
+		print_value(p_book->contacts[i].GetLastName());
+		print_value(p_book->contacts[i].GetNickname());
 		std::cout << std::endl;
 		if (i != 7)
 			std::cout << "|----------|----------|----------|----------|"  << std::endl;
@@ -156,14 +103,14 @@ void	save_contact(PhoneBook *p_book, int &oldest)
 {
 	for (int i = 0; i < 8; ++i)
 	{
-		if (p_book->contacts[i].getFirstName().empty()) {
-			p_book->contacts[i] = new_contact();
+		if (p_book->contacts[i].GetFirstName().empty()) {
+			p_book->contacts[i] = p_book->contacts[0].new_contact();
 			std::cout << "Contact added" << std::endl;
 			break;
 		}
 		if (i == 7)
 		{
-			p_book->contacts[oldest] = new_contact();
+			p_book->contacts[oldest] = p_book->contacts[0].new_contact();
 			oldest++;
 			if (oldest == 8)
                 oldest = 0;
@@ -183,7 +130,7 @@ int	stringToInt(std::string& str)
 		return (4);
 }
 
-void	create_menu()
+void	create_menu(void)
 {
 	std::cout << "TYPE AN OPTION:" << std::endl;
 	std::cout << "----------------" << std::endl;
@@ -210,7 +157,6 @@ void	show_menu(PhoneBook p_book)
 		switch (choice)
 		{
 			case 1:
-			
 				save_contact(&p_book, oldest);				
 				break ;
 			case 2:
@@ -229,7 +175,7 @@ void	show_menu(PhoneBook p_book)
 int main (int argc, char **argv)
 {
 	PhoneBook	p_book;
-	//std::string	str;
+
 	if (argc > 1 || argv[1])
 	{
 		std::cerr << "This program doesn't acept arguments" << std::endl;
