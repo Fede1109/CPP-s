@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:28:38 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/04/28 15:10:20 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/04/28 23:46:17 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,26 +65,7 @@ void Contact::SetDarkestSecret(std::string str)
 	darkest_secret = str;
 }
 
-Contact	Contact::new_contact(void)
-{
-	Contact contact;
-	
-	std::string str;
-	std::cout << "First name:";
-	std::getline(std::cin, str);
-	contact.SetFirstName(str);
-	std::cout << "Last name:";
-	std::getline(std::cin, str);
-	contact.setLastName(str);
-	std::cout << "Nickname:";
-	std::getline(std::cin, str);
-	contact.setNickname(str);
-	std::cout << "Phone number:";
-	std::getline(std::cin, str);
-	contact.SetPhoneNumber(str);
-	std::cout << "Darkest secret:";
-	std::getline(std::cin, str);
-	contact.SetDarkestSecret(str);
-	std::cout << std::endl;
-	return (contact);
-}
+
+
+
+
