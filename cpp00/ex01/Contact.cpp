@@ -6,7 +6,7 @@
 /*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:28:38 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/04/28 23:46:17 by fede             ###   ########.fr       */
+/*   Updated: 2024/04/29 11:40:55 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,27 @@ std::string Contact::GetDarkestSecret(void)
 
 void Contact::SetFirstName(std::string str)
 {
-	first_name = str;
+	this->first_name = str;
 }
 
 void Contact::setLastName(std::string str)
 {
-	last_name = str;
+	this->last_name = str;
 }
 
 void Contact::setNickname(std::string str)
 {
-	nickname = str;
+	this->nickname = str;
 }
 
 void Contact::SetPhoneNumber(std::string str)
 {
-	phone_number = str;
+	this->phone_number = str;
 }
 
 void Contact::SetDarkestSecret(std::string str)
 {
-	darkest_secret = str;
+	this->darkest_secret = str;
 }
 
 

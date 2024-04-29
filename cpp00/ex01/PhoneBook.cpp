@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 23:18:52 by fede              #+#    #+#             */
-/*   Updated: 2024/04/28 23:46:33 by fede             ###   ########.fr       */
+/*   Updated: 2024/04/29 15:29:54 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ void PhoneBook::SetContact(Contact contact, int i)
     contacts[i] = contact;   
 }
 
-void	PhoneBook::save_contact(PhoneBook *p_book, int& oldest)
+void	PhoneBook::save_contact(int& oldest)
 {
 	for (int i = 0; i < 8; ++i)
 	{
-		if (p_book->GetContact(i).GetFirstName().empty()) {
-			p_book->SetContact(p_book->new_contact(), i);
+		if (this->GetContact(i).GetFirstName().empty()) {
+			this->SetContact(this->new_contact(), i);
 			std::cout << "Contact added" << std::endl;
 			break;
 		}
 		if (i == 7)
 		{
-			p_book->SetContact(p_book->new_contact(), oldest);
+			this->SetContact(this->new_contact(), oldest);
 			oldest++;
 			if (oldest == 8)
                 oldest = 0;
@@ -42,7 +42,7 @@ void	PhoneBook::save_contact(PhoneBook *p_book, int& oldest)
 	}
 }
 
-void	PhoneBook::show_contact(PhoneBook *p_book)
+void	PhoneBook::show_contact(void)
 {
 	int			num;
 	std::string	index;
@@ -57,9 +57,9 @@ void	PhoneBook::show_contact(PhoneBook *p_book)
 		std::cout << "|";
 		str = std::to_string(i + 1);
 		print_value(str);
-		print_value(p_book->GetContact(i).GetFirstName());
-		print_value(p_book->GetContact(i).GetLastName());
-		print_value(p_book->GetContact(i).GetNickname());
+		print_value(this->GetContact(i).GetFirstName());
+		print_value(this->GetContact(i).GetLastName());
+		print_value(this->GetContact(i).GetNickname());
 		std::cout << std::endl;
 		if (i != 7)
 			std::cout << "|----------|----------|----------|----------|"  << std::endl;
@@ -78,7 +78,7 @@ void	PhoneBook::show_contact(PhoneBook *p_book)
 		std::cout << std::endl << "That was not a number!" << std::endl << std::endl;
 	}	
 	if (num > 0 && num < 9)
-		p_book->show_full_contact(p_book->GetContact(num - 1));
+		this->show_full_contact(this->GetContact(num - 1));
 	else
 		std::cout << std::endl << "Wrong index!" << std::endl << std::endl;
 }
