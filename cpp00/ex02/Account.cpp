@@ -6,7 +6,7 @@
 /*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:38:08 by fede              #+#    #+#             */
-/*   Updated: 2024/04/30 15:30:28 by fede             ###   ########.fr       */
+/*   Updated: 2024/04/30 15:31:19 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ Account::Account( int initial_deposit ): _amount(initial_deposit)
 
 Account::~Account( void )
 {
-    std::cout << " ";
     std::cout << "index:" << this->_accountIndex << ";";
     std::cout << "amount:" << this->_amount << ";";
     std::cout << "closed" << std::endl;
