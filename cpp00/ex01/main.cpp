@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:37:08 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/04/28 23:29:12 by fede             ###   ########.fr       */
+/*   Updated: 2024/05/06 15:27:56 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	show_menu(PhoneBook p_book)
 		switch (choice)
 		{
 			case 1:
-				p_book.save_contact(&p_book, oldest);				
+				p_book.save_contact(oldest);				
 				break ;
 			case 2:
-				p_book.show_contact(&p_book);
+				p_book.show_contact();
 				break ;
 			case 3:
 				std::cout << "Bye!" << std::endl;

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 23:18:52 by fede              #+#    #+#             */
-/*   Updated: 2024/04/29 15:29:54 by fede             ###   ########.fr       */
+/*   Updated: 2024/05/06 17:31:41 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "./PhoneBook.hpp"
 
 Contact	PhoneBook::GetContact(int i)
@@ -47,6 +48,7 @@ void	PhoneBook::show_contact(void)
 	int			num;
 	std::string	index;
 	std::string str;
+	std::stringstream s1;
 
 	num = 0;
 	std::cout << "---------------------------------------------"  << std::endl;
@@ -54,8 +56,11 @@ void	PhoneBook::show_contact(void)
 	std::cout << "|----------|----------|----------|----------|"  << std::endl;
 	for(int	i = 0; i < 8; i++)
 	{
-		std::cout << "|";
-		str = std::to_string(i + 1);
+		std::cout << "|"; 
+		s1.str("");
+        s1.clear();   
+		s1 << i + 1;
+		str = s1.str();
 		print_value(str);
 		print_value(this->GetContact(i).GetFirstName());
 		print_value(this->GetContact(i).GetLastName());
@@ -71,7 +76,8 @@ void	PhoneBook::show_contact(void)
 	index = str;
 	try
 	{
-		num = std::stoi(index);
+		std::stringstream ss(index);
+		ss >> num;
 	}
 	catch(const std::exception& e)
 	{
