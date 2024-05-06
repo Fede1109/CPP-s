@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 23:18:52 by fede              #+#    #+#             */
-/*   Updated: 2024/05/06 17:31:41 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:40:32 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,20 +93,35 @@ Contact	PhoneBook::new_contact(void)
 	Contact contact;
 	
 	std::string str;
-	std::cout << "First name:";
-	std::getline(std::cin, str);
+	do
+	{
+		std::cout << "First name:";
+		std::getline(std::cin, str);
+	}while(str.empty());		
 	contact.SetFirstName(str);
-	std::cout << "Last name:";
-	std::getline(std::cin, str);
+	do
+	{
+		std::cout << "Last name:";
+		std::getline(std::cin, str);
+	}while(str.empty());
 	contact.setLastName(str);
-	std::cout << "Nickname:";
-	std::getline(std::cin, str);
+	do
+	{		
+		std::cout << "Nickname:";
+		std::getline(std::cin, str);
+	}while(str.empty());	
 	contact.setNickname(str);
-	std::cout << "Phone number:";
-	std::getline(std::cin, str);
+	do
+	{				
+		std::cout << "Phone number:";
+		std::getline(std::cin, str);
+	}while(str.empty());
 	contact.SetPhoneNumber(str);
-	std::cout << "Darkest secret:";
-	std::getline(std::cin, str);
+	do
+	{				
+		std::cout << "Darkest secret:";
+		std::getline(std::cin, str);
+	}while(str.empty());	
 	contact.SetDarkestSecret(str);
 	std::cout << std::endl;
 	std::cout << "FN NEW: " << contact.GetFirstName() << std::endl;
