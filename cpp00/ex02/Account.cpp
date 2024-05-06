@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:38:08 by fede              #+#    #+#             */
-/*   Updated: 2024/04/30 15:31:19 by fede             ###   ########.fr       */
+/*   Updated: 2024/05/06 18:51:24 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	Account::getTotalAmount(void)
 
 int	Account::getNbDeposits(void)
 {
-	return _totalAmount;
+	return _totalNbDeposits;
 }
 
 int Account::getNbWithdrawals(void)
@@ -106,9 +106,9 @@ int     Account::checkAmount( void ) const {
 void	Account::displayStatus( void ) const
 {
 	//TODO. tiempo
-		std::cout << "accounts:" << _nbAccounts <<
-						";total:" << _totalAmount <<
-						";deposits:" << _totalNbDeposits <<
-						";withdrawals:" << _totalNbWithdrawals
+		std::cout <<  "index:" <<  _accountIndex <<
+                        ";amount:" << _amount <<
+						";deposits:" << _nbDeposits <<
+						";withdrawals:" << _nbWithdrawals
 						<< std::endl;
 }
