@@ -6,11 +6,12 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:37:08 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/05/06 15:27:56 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:06:32 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <cstring>
 #include "./Contact.hpp"
@@ -20,21 +21,12 @@ void	print_value(std::string str)
 {
 	size_t	len;
 
-	len = strlen(str.c_str());
-	if (len > 10)
-	{
-		for (size_t i = 0; i < 9; i++)
-		{
-			std::cout << str[i];
-		}
-		std::cout << "." << "|";
-		return ;	
-	}
-	for (size_t i = len; i < 10; i++)
-	{
-		std::cout << " ";
-	}
-	std::cout << str << "|";
+	len = str.size();
+	if (len <= 10)
+		std::cout << std::setw(10) << std::setfill(' ') << str << std::flush;		
+	else	
+		std::cout << str.substr(0,9) << ".";
+	std::cout << "|";	
 }
 
 int	stringToInt(std::string& str)
