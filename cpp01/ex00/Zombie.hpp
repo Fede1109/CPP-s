@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:24:18 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/05/10 15:20:13 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:03:35 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ class Zombie
     private:
         std::string name;
     public:
-		Zombie(std::string name);
 		Zombie();
+		~Zombie();
+		Zombie(std::string name);
 		std::string	getName(void);
-
 		void	setName(std::string str);
         void			announce ( void );
 		static Zombie	*newZombie ( std::string name );

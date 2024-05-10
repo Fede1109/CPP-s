@@ -6,13 +6,13 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:24:34 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/05/08 16:51:43 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:51:35 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "Zombie.hpp"
+#include "Zombie.hpp"
 
-// Zombie *Zombie::newZombie( std::string name )
-// {    
-//     return (new Zombie(name));
-// }
+Zombie *Zombie::newZombie( std::string name )
+{    
+    return (new Zombie(name));
+}
