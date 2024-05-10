@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:24:25 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/05/08 16:51:28 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:20:17 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,10 @@ void    Zombie::randomChump( std::string name )
     Zombie z(name);    
     z.announce();
 }
+
+Zombie::Zombie(std::string name)
+{
+	this->setName(name);
+};
+
+Zombie::Zombie(){};
