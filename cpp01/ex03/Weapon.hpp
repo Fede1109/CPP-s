@@ -3,13 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 11:25:22 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/05/12 12:20:44 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/05/12 20:45:45 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
 #include <iostream>
 
 class Weapon
@@ -17,6 +19,10 @@ class Weapon
     private:
         std::string type;
     public:
-        std::string	getType( void );
-		void		setType( std::string type );
+        Weapon ( std::string type);
+        ~Weapon();
+        const std::string   &getType( void );
+		void	setType( std::string type );
 };
+
+#endif
