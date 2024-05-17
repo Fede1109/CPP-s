@@ -6,7 +6,7 @@
 #    By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 12:42:50 by fdiaz-gu          #+#    #+#              #
-#    Updated: 2024/05/17 12:57:27 by fdiaz-gu         ###   ########.fr        #
+#    Updated: 2024/05/17 14:00:02 by fdiaz-gu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = HumanA.cpp HumanB.cpp main.cpp Weapon.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 all : $(NAME)
