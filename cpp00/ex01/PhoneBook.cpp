@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 23:18:52 by fede              #+#    #+#             */
-/*   Updated: 2024/05/08 14:07:17 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:17:15 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,7 @@ Contact	PhoneBook::new_contact(void)
 		std::getline(std::cin, str);
 	}while(str.empty());	
 	contact.SetDarkestSecret(str);
-	std::cout << std::endl;
-	std::cout << "FN NEW: " << contact.GetFirstName() << std::endl;
+	std::cout << std::endl;	
 	return (contact);
 }
 
