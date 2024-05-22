@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:38:08 by fede              #+#    #+#             */
-/*   Updated: 2024/05/08 12:34:16 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:17:06 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ bool	Account::makeWithdrawal( int withdrawal )
         std::cout << "refused" << std::endl;
         return false;
     }
+    std::cout << withdrawal << ";" << std::flush;
     this->_amount -= withdrawal;
     this->_nbWithdrawals++;
     _totalAmount -= withdrawal;
@@ -93,7 +94,7 @@ void    Account::makeDeposit( int deposit )
     this->_amount += deposit;
     std::cout << "deposit:" << deposit << ";"
                 << "amount:" << this->_amount << ";"
-                << "nb_deposit:" << this->_nbDeposits << std::endl;
+                << "nb_deposits:" << this->_nbDeposits << std::endl;
 }
 
 void    Account::displayAccountsInfos( void ) 
