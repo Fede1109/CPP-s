@@ -6,7 +6,7 @@
 #    By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 12:58:29 by fdiaz-gu          #+#    #+#              #
-#    Updated: 2024/05/17 13:59:55 by fdiaz-gu         ###   ########.fr        #
+#    Updated: 2024/05/23 15:45:20 by fdiaz-gu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,14 @@ NAME = replace
 SRCS = main.cpp Sed.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 all: $(NAME)
 
 $(NAME) : $(OBJS)
-		  @$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+		  @$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean: 	
 		@$(RM) $(OBJS)
