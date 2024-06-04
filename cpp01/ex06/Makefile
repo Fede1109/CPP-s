@@ -6,11 +6,11 @@
 #    By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 13:59:09 by fdiaz-gu          #+#    #+#              #
-#    Updated: 2024/05/23 15:46:15 by fdiaz-gu         ###   ########.fr        #
+#    Updated: 2024/06/04 14:48:41 by fdiaz-gu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = replace
+NAME = harlFilter
 
 SRCS = main.cpp Harl.cpp
 OBJS = $(SRCS:.cpp=.o)

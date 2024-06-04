@@ -6,11 +6,11 @@
 #    By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 13:58:45 by fdiaz-gu          #+#    #+#              #
-#    Updated: 2024/05/23 15:45:43 by fdiaz-gu         ###   ########.fr        #
+#    Updated: 2024/06/04 14:49:26 by fdiaz-gu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = replace
+NAME = harl
 
 SRCS = main.cpp Harl.cpp
 OBJS = $(SRCS:.cpp=.o)
