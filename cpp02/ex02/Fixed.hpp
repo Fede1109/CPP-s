@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:11:41 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/06/03 18:45:45 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/06/04 11:08:58 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ public:
     
 //  ******INCREMENT/DECREMENT OPERATORS******
     Fixed&    operator++ ();
-    Fixed&    operator++ (int);
+    Fixed    operator++ (int);
     Fixed&    operator-- ();
-    Fixed&    operator-- (int);
+    Fixed    operator-- (int);
 
 //  ******OVERLOADED FUNCTIONS******
 
