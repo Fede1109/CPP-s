@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:11:41 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/06/04 11:14:31 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:23:23 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ public:
     Fixed(const Fixed &f);
 //  ******COMPARISON OPERATORS******
     Fixed&    operator= (const Fixed &a);
-    Fixed&    operator> (const Fixed &a);
-    Fixed&    operator>= (const Fixed &a);
-    Fixed&    operator<= (const Fixed &a);
-    Fixed&    operator== (const Fixed &a);
-    Fixed&    operator!= (const Fixed &a);
+    bool    operator> (const Fixed &a);
+    bool    operator< (const Fixed &a);
+    bool    operator>= (const Fixed &a);
+    bool    operator<= (const Fixed &a);
+    bool    operator== (const Fixed &a);
+    bool    operator!= (const Fixed &a);
 
 //  ******ARITHMETIC OPERATORS******
     Fixed&    operator+ (const Fixed &a);

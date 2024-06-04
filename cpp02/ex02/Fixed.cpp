@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:12:17 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/06/03 15:35:36 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:24:19 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ Fixed::Fixed(const Fixed &f)
     
 }
 
+//  ******COMPARISON OPERATORS******
 Fixed&    Fixed::operator= (const Fixed &a)
 {
     std::cout << "Copy assignment operator called" << std::endl;
@@ -48,6 +49,37 @@ Fixed&    Fixed::operator= (const Fixed &a)
             this->_num = a.getRawBits();
         return *this;
 }
+
+bool  Fixed::operator> (const Fixed &a)
+{
+    return this->_num > a.getRawBits();
+}
+
+bool  Fixed::operator< (const Fixed &a)
+{
+    return this->_num < a.getRawBits();
+}
+
+bool  Fixed::operator>= (const Fixed &a)
+{
+    return this->_num >= a.getRawBits();
+}
+
+bool  Fixed::operator<= (const Fixed &a)
+{
+    return this->_num <= a.getRawBits();
+}
+
+bool  Fixed::operator== (const Fixed &a)
+{
+    return this->_num == a.getRawBits();
+}
+
+bool  Fixed::operator!= (const Fixed &a)
+{
+    return this->_num != a.getRawBits();
+}
+
 
 int Fixed::getRawBits(void) const
 {
