@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:11:41 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/06/04 11:08:58 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/06/04 11:14:31 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ public:
 
     Fixed&  min(Fixed &f1, Fixed &f2);
     Fixed& min(const Fixed& f1, const Fixed& f2);
+    Fixed& max(Fixed &f1, Fixed &f2);
+    Fixed& max(const Fixed& f1, const Fixed& f2);
     
     float   toFloat ( void ) const;
     int     toInt ( void ) const;
