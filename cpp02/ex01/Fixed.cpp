@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:12:17 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/06/27 17:17:49 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:01:17 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void Fixed::setRawBits(int const raw)
 
 float   Fixed::toFloat( void )  const
 {
-    return static_cast<float>((_num) / (1 << _bits));
+    return static_cast<float>((_num)) / ((1 << _bits));
 }
 
 int Fixed::toInt( void ) const
