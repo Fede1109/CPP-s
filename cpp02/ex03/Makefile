@@ -1,18 +1,18 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefie                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/27 17:02:12 by fdiaz-gu          #+#    #+#              #
-#    Updated: 2024/06/27 17:15:50 by fdiaz-gu         ###   ########.fr        #
+#    Created: 2024/06/27 17:02:42 by fdiaz-gu          #+#    #+#              #
+#    Updated: 2024/06/27 17:02:56 by fdiaz-gu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fixed
 
-SRCS = Fixed.cpp main.cpp
+SRCS = Fixed.cpp main.cpp bsp.cpp Point.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
