@@ -1,7 +1,7 @@
 #include "ScavTrap.hpp"
 
-
-ScavTrap::ScavTrap (void) {
+ScavTrap::ScavTrap(void)
+{
 	this->_name = "random name";
 	this->_health = 100;
 	this->_energy_points = 50;
@@ -9,7 +9,7 @@ ScavTrap::ScavTrap (void) {
 	std::cout << "Scav_trap Default constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name): ClapTrap(name)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	this->_health = 100;
 	this->_energy_points = 50;
@@ -18,17 +18,20 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 	std::cout << "ScavTrap constructor called" << std::endl;
 }
 
-ScavTrap::~ScavTrap() 
+ScavTrap::~ScavTrap()
 {
 	std::cout << "ScavTrap destructor called" << std::endl;
 }
 
-void	ScavTrap::attack(const std::string& target){
-	if (this->_energy_points < 1){
+void ScavTrap::attack(const std::string &target)
+{
+	if (this->_energy_points < 1)
+	{
 		std::cout << "ScavTrap " << this->_name << " is exhausted!" << std::endl;
 		return;
 	}
-	if (this->_health < 1){
+	if (this->_health < 1)
+	{
 		std::cout << "ScavTrap " << this->_name << " is died!" << std::endl;
 		return;
 	}
@@ -36,12 +39,15 @@ void	ScavTrap::attack(const std::string& target){
 	return;
 }
 
-void	ScavTrap::guardGate(void){
-	if (this->_energy_points < 1){
+void ScavTrap::guardGate(void)
+{
+	if (this->_energy_points < 1)
+	{
 		std::cout << "ScavTrap " << this->_name << " is exhausted!" << std::endl;
 		return;
 	}
-	if (this->_health < 1){
+	if (this->_health < 1)
+	{
 		std::cout << "ScavTrap " << this->_name << " is died!" << std::endl;
 		return;
 	}
