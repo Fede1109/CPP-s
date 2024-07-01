@@ -1,6 +1,7 @@
 #include "./ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void){
+ClapTrap::ClapTrap(void)
+{
 	std::cout << "Default constructor called" << std::endl;
 	this->_name = "ª";
 	this->_health = 10;
@@ -9,7 +10,7 @@ ClapTrap::ClapTrap(void){
 	return;
 }
 
-ClapTrap::ClapTrap( std::string name )
+ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << "ClapTrap default constructor called" << std::endl;
 	this->_name = name;
@@ -20,10 +21,10 @@ ClapTrap::ClapTrap( std::string name )
 
 ClapTrap::~ClapTrap(void)
 {
-    std::cout << "ClapTrap destructor called" << std::endl;
-    return;
+	std::cout << "ClapTrap destructor called" << std::endl;
+	return;
 }
-ClapTrap& ClapTrap::operator=( const ClapTrap& ct)
+ClapTrap &ClapTrap::operator=(const ClapTrap &ct)
 {
 	this->_name = ct._name;
 	this->_health = ct._health;
@@ -32,55 +33,53 @@ ClapTrap& ClapTrap::operator=( const ClapTrap& ct)
 	return *this;
 }
 
-ClapTrap::ClapTrap(const ClapTrap& ct)
+ClapTrap::ClapTrap(const ClapTrap &ct)
 {
 	*this = ct;
 	std::cout << "Claptrap copy constructor called" << std::endl;
-	return ;
+	return;
 }
 
-void	ClapTrap::attack( const std::string& target)
+void ClapTrap::attack(const std::string &target)
 {
 	if (_energy_points < 1)
 	{
 		std::cout << "ClapTrap " << _name << " is exhausted!" << std::endl;
-		return ;
+		return;
 	}
 	if (_health < 1)
 	{
 		std::cout << "ClapTrap " << _name << " is dead!" << std::endl;
-		return ;
+		return;
 	}
 	std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attack_dmg << " points of damage!" << std::endl;
-	_energy_points -=1;
+	_energy_points -= 1;
 }
 
-void	ClapTrap::takeDamage( unsigned int amount )
+void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (_health < 1)
 	{
 		std::cout << "ClapTrap " << _name << " is dead!" << std::endl;
-		return ;
+		return;
 	}
 	std::cout << "ClapTrap " << _name << " takes " << amount << " damage!" << std::endl;
-    _health -= amount;
+	_health -= amount;
 }
 
-void	ClapTrap::beRepaired( unsigned int amount )
+void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_energy_points < 1)
 	{
 		std::cout << "ClapTrap " << _name << " is exhausted" << std::endl;
-		return ;
+		return;
 	}
 	if (_health < 1)
 	{
 		std::cout << "ClapTrap " << _name << " is dead!" << std::endl;
-		return ;
+		return;
 	}
 	std::cout << "ClapTrap " << _name << " repairs itself for " << amount << " hit points!" << std::endl;
 	_energy_points -= 1;
 	_health += amount;
-
 }
-

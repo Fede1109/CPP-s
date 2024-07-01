@@ -5,13 +5,14 @@
 
 class ScavTrap : public ClapTrap
 {
-	private:
-		ScavTrap();
-	public:
-		ScavTrap( std::string name );
-		~ScavTrap();
-		void	attack(std::string const& target);
-		void	guardGate();
-
+private:
+public:
+	ScavTrap();
+	~ScavTrap();
+	ScavTrap(std::string name);
+	ScavTrap(const ScavTrap &st);
+	ScavTrap &operator=(const ScavTrap &scav);
+	void attack(std::string const &target);
+	void guardGate();
 };
 #endif

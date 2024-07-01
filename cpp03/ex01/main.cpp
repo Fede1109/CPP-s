@@ -2,8 +2,8 @@
 
 int main()
 {
-	ScavTrap	st("pepe");
-	ClapTrap	ct("juan");
+	ScavTrap st("pepe");
+	ClapTrap ct("juan");
 
 	st.attack("pedrito");
 	ct.attack("jose");
