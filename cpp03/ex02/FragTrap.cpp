@@ -1,6 +1,15 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap ( std::string name ) :ClapTrap(name)
+FragTrap::FragTrap(void) : ClapTrap()
+{
+	std::cout << "Default constructor called" << std::endl;
+	this->_name = "FT";
+	this->_health = 100;
+	this->_energy_points = 100;
+	this->_attack_dmg = 30;
+}
+
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	this->_health = 100;
 	this->_energy_points = 100;
@@ -13,13 +22,29 @@ FragTrap::~FragTrap()
 {
 	std::cout << "FragTrap destroyed" << std::endl;
 }
-
-void	FragTrap::highFivesGuys(void){
-	if (this->_energy_points < 1){
+FragTrap::FragTrap(const FragTrap& ft)
+{
+	*this = ft;
+	std::cout << "FragTrap copy constructor called" << std::endl;
+	return ;
+}
+FragTrap& FragTrap::operator=(const FragTrap &ft)
+{
+	this->_name = ft._name;
+	this->_health = ft._health;
+	this->_energy_points = ft._energy_points;
+	this->_attack_dmg = ft._attack_dmg;
+	return *this;
+}
+void FragTrap::highFivesGuys(void)
+{
+	if (this->_energy_points < 1)
+	{
 		std::cout << "FragTrap " << this->_name << " is exhausted!" << std::endl;
 		return;
 	}
-	if (this->_health < 1){
+	if (this->_health < 1)
+	{
 		std::cout << "FragTrap " << this->_name << " is dead!" << std::endl;
 		return;
 	}
