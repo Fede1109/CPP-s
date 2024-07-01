@@ -11,6 +11,6 @@ int main(void)
 	ysy.whoAmI();
 	ysy = duko;
 	ysy.whoAmI();
-	ysy.attack("Yusepe");
-	return 0;
+	ysy.attack("ysy");
+	return (0);
 }
