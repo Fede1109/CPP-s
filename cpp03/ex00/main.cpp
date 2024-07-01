@@ -1,6 +1,5 @@
 #include "ClapTrap.hpp"
 
-
 int main(void)
 {
 	ClapTrap a("pepe");
@@ -11,7 +10,6 @@ int main(void)
 	a.beRepaired(4);
 	a.takeDamage(20);
 	a.takeDamage(20);
-
 
 	ClapTrap b;
 	b.takeDamage(9);
