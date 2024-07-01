@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:12:17 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/06/11 12:40:21 by fede             ###   ########.fr       */
+/*   Updated: 2024/06/27 18:19:32 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Fixed::Fixed(const int num) : _num(num << _bits)
     // std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float num): _num(std::roundf(num * (1 << _bits)))
+Fixed::Fixed(const float num): _num(roundf(num * (1 << _bits)))
 {
     // std::cout << "Float constructor called" << std::endl;
 }

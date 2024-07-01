@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:12:17 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/06/03 15:35:36 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:01:17 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ Fixed::Fixed(const int num) : _num(num << _bits)
     std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float num): _num(std::roundf((num) * (1 << _bits)))
+Fixed::Fixed(const float num): _num(roundf((num) * (1 << _bits)))
 {
     std::cout << "Float constructor called" << std::endl;
+    std::cout << "NUM: " << _num << std::endl;
 }
 
 
@@ -45,7 +46,7 @@ Fixed&    Fixed::operator= (const Fixed &a)
 {
     std::cout << "Copy assignment operator called" << std::endl;
     if ( this != &a )
-            this->_num = a.getRawBits();
+            this->_num = a._num;
         return *this;
 }
 
@@ -62,12 +63,12 @@ void Fixed::setRawBits(int const raw)
 
 float   Fixed::toFloat( void )  const
 {
-    return (float)((getRawBits()) / (1 << _bits));
+    return static_cast<float>((_num)) / ((1 << _bits));
 }
 
 int Fixed::toInt( void ) const
 {
-    return (getRawBits() >> _bits);
+    return (_num >> _bits);
 }
 
 std::ostream& operator<<(std::ostream &os, Fixed const &a)
