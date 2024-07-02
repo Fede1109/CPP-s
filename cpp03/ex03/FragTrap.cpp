@@ -36,6 +36,21 @@ FragTrap& FragTrap::operator=(const FragTrap &ft)
 	this->_attack_dmg = ft._attack_dmg;
 	return *this;
 }
+void FragTrap::attack(const std::string &target)
+{
+	if (this->_energy_points < 1)
+	{
+		std::cout << "FragTrap " << this->_name << " is exhausted!" << std::endl;
+		return;
+	}
+	if (this->_health < 1)
+	{
+		std::cout << "FragTrap " << this->_name << " is dead!" << std::endl;
+		return;
+	}
+	std::cout << "FragTrap " << this->_name << " destroyed"  << target << " after dealing " << this->_attack_dmg << " of damage!" << std::endl;
+	return;
+}
 void FragTrap::highFivesGuys(void)
 {
 	if (this->_energy_points < 1)

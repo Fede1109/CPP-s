@@ -2,15 +2,15 @@
 #define FRAGTRAP_HPP
 #include "ClapTrap.hpp"
 
-class FragTrap : virtual public ClapTrap
+class FragTrap : public ClapTrap
 {
 public:
 	FragTrap(void);
 	~FragTrap(void);
 	FragTrap(const FragTrap &ft);
 	FragTrap& operator=(const FragTrap& frag);
-	FragTrap(std::string name);	
-
+	FragTrap(std::string name);
+	void attack(std::string const& target);
 	void highFivesGuys(void);
 };
 #endif
