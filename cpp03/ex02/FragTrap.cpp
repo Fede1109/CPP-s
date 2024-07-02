@@ -20,7 +20,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 
 FragTrap::~FragTrap()
 {
-	std::cout << "FragTrap destroyed" << std::endl;
+	std::cout << "FragTrap destructor called" << std::endl;
 }
 FragTrap::FragTrap(const FragTrap& ft)
 {
@@ -48,7 +48,7 @@ void FragTrap::attack(const std::string &target)
 		std::cout << "FragTrap " << this->_name << " is dead!" << std::endl;
 		return;
 	}
-	std::cout << "FragTrap " << this->_name << " destroyed"  << target << " after dealing " << this->_attack_dmg << " of damage!" << std::endl;
+	std::cout << "FragTrap " << this->_name << " destroyed "  << target << " after dealing " << this->_attack_dmg << " of damage!" << std::endl;
 	return;
 }
 void FragTrap::highFivesGuys(void)
