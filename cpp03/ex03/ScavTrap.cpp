@@ -51,7 +51,7 @@ void ScavTrap::attack(const std::string &target)
 		std::cout << "ScavTrap " << this->_name << " was defeated and can not move!" << std::endl;
 		return;
 	}
-	std::cout << "ScavTrap " << this->_name << " annihilates " << target << " after attacking with " << this->_attack_dmg << " units of power!" << std::endl;
+	std::cout << "ScavTrap " << this->_name << " destroyed"  << target << " after dealing " << this->_attack_dmg << " of damage!" << std::endl;
 	return;
 }
 
