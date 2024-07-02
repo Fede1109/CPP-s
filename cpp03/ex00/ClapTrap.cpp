@@ -2,8 +2,8 @@
 
 ClapTrap::ClapTrap(void)
 {
-	std::cout << "Default constructor called" << std::endl;
-	this->_name = "ª";
+	std::cout << "Default claptrap constructor called" << std::endl;
+	this->_name = "ct";
 	this->_health = 10;
 	this->_energy_points = 10;
 	this->_attack_dmg = 0;
@@ -79,7 +79,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << _name << " is dead!" << std::endl;
 		return;
 	}
-	std::cout << "ClapTrap " << _name << " repairs itself for " << amount << " hit points!" << std::endl;
 	_energy_points -= 1;
 	_health += amount;
 }
