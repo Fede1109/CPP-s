@@ -48,7 +48,7 @@ void ScavTrap::attack(const std::string &target)
 	}
 	if (this->_health < 1)
 	{
-		std::cout << "ScavTrap " << this->_name << " was defeated and can not move!" << std::endl;
+		std::cout << "ScavTrap " << this->_name << " is dead!" << std::endl;
 		return;
 	}
 	std::cout << "ScavTrap " << this->_name << " destroyed"  << target << " after dealing " << this->_attack_dmg << " of damage!" << std::endl;
@@ -64,7 +64,7 @@ void ScavTrap::guardGate(void)
 	}
 	if (this->_health < 1)
 	{
-		std::cout << "ScavTrap " << this->_name << " was defeated and can not move!" << std::endl;
+		std::cout << "ScavTrap " << this->_name << " is dead!" << std::endl;
 		return;
 	}
 	std::cout << "ScavTrap " << this->_name << " has adopted Guard keeper mode!" << std::endl;
