@@ -1,9 +1,9 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(void) : ClapTrap("Generic Diamond_Trap_clap_name"), ScavTrap("Generic Diamond_Trap_clap_name"), FragTrap("Generic Diamond_Trap_clap_name")
+DiamondTrap::DiamondTrap(void) : ClapTrap("DT_clap_name"), ScavTrap("DT_clap_name"), FragTrap("DT_clap_name")
 {
-	std::cout << "Diamond_trap Default constructor called" << std::endl;
-	this->_name = "Generic Diamond_Trap";
+	std::cout << "Default DiamondTrap constructor called" << std::endl;
+	this->_name = "DT";
 	this->_health = 100;
 	this->_energy_points = 50;
 	this->_attack_dmg = 30;
@@ -20,13 +20,13 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), Scav
 
 DiamondTrap::DiamondTrap(const DiamondTrap &trap)
 {
-	std::cout << "Diamond_trap Copy constructor called" << std::endl;
+	std::cout << "DiamondTrap Copy constructor called" << std::endl;
 	*this = trap;
 }
 
 DiamondTrap::~DiamondTrap(void)
 {
-	std::cout << "Diamond_trap Destructor called" << std::endl;
+	std::cout << "DiamondTrap Destructor called" << std::endl;
 }
 
 void DiamondTrap::whoAmI(void)
