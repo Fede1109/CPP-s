@@ -3,14 +3,18 @@
 int main()
 {
 	ScavTrap st("pepe");
-	ClapTrap ct("juan");
+
 
 	st.attack("pedrito");
-	ct.attack("jose");
 	st.guardGate();
 	st.beRepaired(1);
 	st.guardGate();
 	st.attack("pedrito");
+	// for (size_t i = 0; i < 51; i++)
+	// {
+	// 	st.beRepaired(1);
+	// }
+	st.takeDamage(101);
 	st.beRepaired(30);
 	st.attack("pedrito");
 	return 0;
