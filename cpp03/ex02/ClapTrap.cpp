@@ -79,6 +79,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << _name << " is dead!" << std::endl;
 		return;
 	}
+	std::cout << "Claptrap" << _name << "repaired himself" << amount << "hp" << std::endl;
 	_energy_points -= 1;
 	_health += amount;
 }

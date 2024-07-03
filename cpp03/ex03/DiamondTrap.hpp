@@ -11,7 +11,7 @@ public:
 	DiamondTrap(void);
 	DiamondTrap(std::string name);
 	DiamondTrap(const DiamondTrap &diamond);
-	virtual ~DiamondTrap(void);
+	~DiamondTrap(void);
 
 	void whoAmI(void);
 	void attack(std::string const &target);
