@@ -22,3 +22,8 @@ Cat::Cat(const Cat& d)
     std::cout << "Cat copy constructor called" << std::endl;
     return ;
 }
+
+void    makeSound(void)
+{
+    std::cout << "Miau" << std::endl;
+}

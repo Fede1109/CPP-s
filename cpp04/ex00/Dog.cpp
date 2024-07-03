@@ -22,3 +22,8 @@ Dog::Dog(const Dog& d)
     std::cout << "Dog copy constructor called" << std::endl;
     return ;
 }
+
+void    makeSound(void)
+{
+    std::cout << "Guau" << std::endl;
+}
