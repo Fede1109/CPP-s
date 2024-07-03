@@ -2,7 +2,7 @@
 
 Cat::Cat(void)
 {
-    this->type = "Cat";
+    this->_type = "Cat";
     std::cout << "Default Cat costructor called" << std::endl;
 }
 
@@ -12,7 +12,7 @@ Cat::~Cat(void)
 }
 Cat &Cat::operator=(const Cat& d)
 {
-    this->type = d.type;
+    this->_type = d._type;
     return *this;
 }
 
@@ -23,7 +23,7 @@ Cat::Cat(const Cat& d)
     return ;
 }
 
-void    makeSound(void)
+void    Cat::makeSound(void) const
 {
     std::cout << "Miau" << std::endl;
 }

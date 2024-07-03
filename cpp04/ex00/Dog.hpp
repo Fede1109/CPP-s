@@ -10,6 +10,6 @@ public:
 	~Dog(void);
 	Dog(const Dog &d);
 	Dog &operator=(const Dog &d);
-	void makeSound();
+	void makeSound(void) const;
 };
 #endif

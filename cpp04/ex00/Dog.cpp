@@ -2,7 +2,7 @@
 
 Dog::Dog(void)
 {
-    this->type = "Dog";
+    this->_type = "Dog";
     std::cout << "Default dog costructor called" << std::endl;
 }
 
@@ -12,7 +12,7 @@ Dog::~Dog(void)
 }
 Dog &Dog::operator=(const Dog& d)
 {
-    this->type = d.type;
+    this->_type = d._type;
     return *this;
 }
 
@@ -23,7 +23,7 @@ Dog::Dog(const Dog& d)
     return ;
 }
 
-void    makeSound(void)
+void    Dog::makeSound(void) const
 {
     std::cout << "Guau" << std::endl;
 }
