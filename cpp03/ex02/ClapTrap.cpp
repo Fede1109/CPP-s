@@ -12,7 +12,7 @@ ClapTrap::ClapTrap(void)
 
 ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << "ClapTrap default constructor called" << std::endl;
+	std::cout << "ClapTrap constructor called" << std::endl;
 	this->_name = name;
 	this->_health = 10;
 	this->_energy_points = 10;
