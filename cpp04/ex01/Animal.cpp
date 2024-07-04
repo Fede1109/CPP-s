@@ -1,10 +1,11 @@
 #include "./Animal.hpp"
-
+#include "./Cat.hpp"
+#include "./Dog.hpp"
 
 Animal::Animal(void)
 {
     this->_type = "default";
-    std::cout << "Animal default constructor called"<< std::endl;;
+    std::cout << "Default Animal constructor called"<< std::endl;;
 }
 
 Animal::~Animal(void)

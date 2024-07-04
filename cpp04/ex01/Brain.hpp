@@ -9,8 +9,8 @@ class Brain
 	public:
 		Brain(void);
 		~Brain(void);
-		// Brain (const Brain& b);
-		// Brain &operator=(const Brain& b);
+		Brain (const Brain& b);
+		Brain &operator=(const Brain& b);
 };
 
 #endif

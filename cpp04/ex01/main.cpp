@@ -4,11 +4,24 @@
 #include "./Animal.hpp"
 int main()
 {
-	const Brain *b = new Brain();
-	const Animal *j = new Dog();
-	const Animal *i = new Cat();	
-	delete j; // should not create a leak
-	delete i;
-	delete b;
+	Animal *animals[50];
+
+	for (size_t i = 0; i < 25; i++)
+	{
+		animals[i] = new Cat();
+		std::cout << "------------------------" << std::endl;
+	}
+
+	for (size_t i = 25; i < 50; i++)
+	{
+		animals[i] = new Dog();
+		std::cout << "------------------------" << std::endl;
+	}
+
+	for (size_t i = 0; i < 50; i++)
+	{
+		delete animals[i];
+		std::cout << "------------------------" << std::endl;
+	}
 	return 0;
 }
