@@ -14,7 +14,7 @@ class Animal
         Animal& operator=(const Animal&  a);
         std::string getType(void) const;
         void setType(std::string type);
-       	virtual void makeSound(void) const = 0;
+       	virtual void makeSound(void) const;
 
 };
 #endif
