@@ -4,18 +4,19 @@ DiamondTrap::DiamondTrap(void) : ClapTrap("DT_clap_name"), ScavTrap("DT_clap_nam
 {
 	std::cout << "Default DiamondTrap constructor called" << std::endl;
 	this->_name = "DT";
-	this->_health = 100;
-	this->_energy_points = 50;
-	this->_attack_dmg = 30;
+	this->_health = FragTrap::_health;
+	this->_energy_points = ScavTrap::_energy_points;
+	this->_attack_dmg = FragTrap::_attack_dmg;
+	std::cout << "VIDA:" << this->_health << std::endl;
 }
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)
 {
 	std::cout << "Diamond_trap Parameter constructor called" << std::endl;
 	this->_name = name;
-	this->_health = 100;
-	this->_energy_points = 50;
-	this->_attack_dmg = 30;
+	this->_health = FragTrap::_health;
+	this->_energy_points = ScavTrap::_energy_points;
+	this->_attack_dmg = FragTrap::_attack_dmg;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &trap)
