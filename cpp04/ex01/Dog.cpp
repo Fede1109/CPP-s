@@ -12,21 +12,26 @@ Dog::~Dog(void)
     delete this->_brain;
     std::cout << "Dog destructor called" << std::endl;
 }
-Dog &Dog::operator=(const Dog& d)
+
+Dog &Dog::operator=(const Dog &d)
 {
-    this->_brain = d._brain;
-    this->_type = d._type;
+    if (this != &d)
+    {
+        delete _brain;
+        _brain = new Brain(*d._brain);
+        _type = d._type;
+    }
     return *this;
 }
 
-Dog::Dog(const Dog& d)
+Dog::Dog(const Dog &d)
 {
     *this = d;
     std::cout << "Dog copy constructor called" << std::endl;
-    return ;
+    return;
 }
 
-void    Dog::makeSound(void) const
+void Dog::makeSound(void) const
 {
     std::cout << "Guau" << std::endl;
 }

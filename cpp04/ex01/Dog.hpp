@@ -6,13 +6,14 @@
 
 class Dog : public Animal
 {
-	private:
-		Brain* _brain;
-	public:
-		Dog(void);
-		~Dog(void);
-		Dog(const Dog &d);
-		Dog &operator=(const Dog &d);
-		void makeSound(void) const;
-	};
+private:
+	Brain *_brain;
+
+public:
+	Dog(void);
+	~Dog(void);
+	Dog(const Dog &d);
+	Dog &operator=(const Dog &d);
+	void makeSound(void) const;	
+};
 #endif
