@@ -7,7 +7,7 @@ DiamondTrap::DiamondTrap(void) : ClapTrap("DT_clap_name"), ScavTrap("DT_clap_nam
 	this->_health = FragTrap::_health;
 	this->_energy_points = ScavTrap::_energy_points;
 	this->_attack_dmg = FragTrap::_attack_dmg;
-	std::cout << "VIDA:" << this->_health << std::endl;
+	std::cout << "VIDA:" << this->_energy_points << std::endl;
 }
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)

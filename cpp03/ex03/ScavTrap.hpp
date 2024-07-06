@@ -5,7 +5,8 @@
 
 class ScavTrap : virtual public ClapTrap
 {
-private:
+protected:
+	int	_energy_points;
 public:
 	ScavTrap();
 	~ScavTrap();
