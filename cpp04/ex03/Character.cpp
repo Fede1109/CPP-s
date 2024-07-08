@@ -29,12 +29,19 @@ std::string const&  Character::getName(void) const
 }
 void Character::equip(AMateria* m)
 {
-
+	for (size_t i = 0; i < 4; i++)
+	{
+		if (this->materias[i] == NULL)
+		{
+			this->materias[i] = m;
+			break ;
+		}
+	}
 }
 
 void	Character::unequip(int idx)
 {
-
+	
 }
 void	Character::use(int idx, ICharacter& target)
 {
