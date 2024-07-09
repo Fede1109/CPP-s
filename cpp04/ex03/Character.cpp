@@ -8,6 +8,11 @@ Character::Character(void)
 	this->_name = "Default Character";
 }
 
+Character::Character(std::string name)
+{
+	this->_name = name;
+}
+
 Character::~Character(void)
 {
 	int i = 0;
@@ -19,7 +24,7 @@ Character::~Character(void)
 	}
 	delete[] _addresses;
 }
-
+//TODO: Checkear deepcopies 
 Character &Character::operator=(const Character &c)
 {
 	this->_name = c._name;
