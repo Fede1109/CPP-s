@@ -34,10 +34,15 @@ void MateriaSource::learnMateria(AMateria *a)
 AMateria *MateriaSource::createMateria(std::string const &type)
 {
 	AMateria *am;
+	std::cout << "------------------------------" << std::endl;
 	for (size_t i = 0; i < 4; i++)
 	{
 		if (type == _learnedMaterias[i]->getType())
 		{
+			std::cout << "******" << std::endl;
+			std::cout << "hola" << std::endl;
+			std::cout << _learnedMaterias[i]->getType() << std::endl;
+			std::cout << "******" << std::endl;
 			am = _learnedMaterias[i];
 			return am;
 		}

@@ -102,14 +102,26 @@ void Character::unequip(int idx)
 }
 void Character::use(int idx, ICharacter &target)
 {
-	Cure *c = NULL;
-	Ice *i = NULL;
+    if (idx < 0 || idx >= 4 || !_materias[idx]) {
+        std::cout << "Invalid index or no materia equipped at index " << idx << std::endl;
+        return;
+    }
 
-	if (this->_materias[idx]->getType() == "Ice")
-		c->use(target);
-	else if (this->_materias[idx]->getType() == "Cure")
-		i->use(target);
+//! ==331875==ERROR: AddressSanitizer: SEGV on unknown address (pc 0x7fcfd4317148 bp 0x7ffe5bfc9b30 sp 0x7ffe5bfc9a18 T0)
+	std::cout << _materias[idx] << std::endl;
+    std::string type = _materias[idx]->getType();
+	
+    if (type == "ice") {
+        Ice ice;
+        ice.use(target);
+    } else if (type == "cure") {
+        Cure cure;
+        cure.use(target);
+    } else {
+        std::cout << "Unknown materia type: " << type << std::endl;
+    }
 }
+
 
 void Character::saveAdress(AMateria *adress)
 {

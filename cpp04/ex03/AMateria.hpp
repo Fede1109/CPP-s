@@ -2,14 +2,15 @@
 #define AMATERIA_HPP
 
 #include <iostream>
+
 class ICharacter;
 
 
 class AMateria
 {
 	protected:
-		std::string	_type;
 	public:
+		std::string	_type;
 	AMateria(void);
 	virtual ~AMateria(void);
 	AMateria&  operator=(const AMateria& am);
