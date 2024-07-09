@@ -1,9 +1,10 @@
 #include "./Cure.hpp"
+#include "./ICharacter.hpp"
 
 Cure::Cure(void) : AMateria()
 {
 	std::cout << "Default Cure constructor" << std::endl;
-	this->type =  "cure";
+	this->_type =  "cure";
 }
 
 Cure::~Cure(void)
@@ -13,7 +14,7 @@ Cure::~Cure(void)
 
 Cure &Cure::operator=(const Cure& c)
 {
-	this->type = c.type;
+	this->_type = c._type;
 	return *this;
 }
 

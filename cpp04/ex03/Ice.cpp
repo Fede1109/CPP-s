@@ -1,9 +1,10 @@
 #include "./Ice.hpp"
+#include "./ICharacter.hpp"
 
 Ice::Ice(void) : AMateria()
 {
 	std::cout << "Default Ice constructor" << std::endl;
-	this->type =  "ice";
+	this->_type =  "ice";
 }
 
 Ice::~Ice(void)
@@ -13,7 +14,7 @@ Ice::~Ice(void)
 
 Ice &Ice::operator=(const Ice& c)
 {
-	this->type = c.type;
+	this->_type = c._type;
 	return *this;
 }
 

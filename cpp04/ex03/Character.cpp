@@ -15,16 +15,17 @@ Character::Character(std::string name)
 
 Character::~Character(void)
 {
-	int i = 0;
 	std::cout << "Character destructor called" << std::endl;
-	while (_addresses[i])
+	for (int i = 0; i < 100; ++i)
 	{
-		delete[] _addresses[i];
-		i++;
-	}
-	delete[] _addresses;
+		if (_addresses[i])
+		{
+			delete _addresses[i];
+			_addresses[i] = NULL;
+		}
+	}	
 }
-//TODO: Checkear deepcopies 
+// TODO: Checkear deepcopies
 Character &Character::operator=(const Character &c)
 {
 	this->_name = c._name;
@@ -54,15 +55,16 @@ void Character::equip(AMateria *m)
 void Character::unequip(int idx)
 {
 	if (idx > 4)
-		return ;
+		return;
 	saveAdress(materias[idx]);
 	materias[idx] = NULL;
 	// delete materias[idx];
 }
 void Character::use(int idx, ICharacter &target)
 {
-	Cure *c;
-	Ice *i;
+	Cure *c = NULL;
+	Ice *i = NULL;
+
 	if (this->materias[idx]->getType() == "Ice")
 		c->use(target);
 	else if (this->materias[idx]->getType() == "Cure")
@@ -75,5 +77,4 @@ void Character::saveAdress(AMateria *adress)
 	{
 		_addresses[i] = adress;
 	}
-	
 }
