@@ -6,7 +6,7 @@ MateriaSource::MateriaSource(void)
 	{
 		_learnedMaterias[i] = NULL;
 	}
-	std::cout << "Materia Source default constructor" << std::endl;
+	// std::cout << "Materia Source default constructor" << std::endl;
 }
 
 MateriaSource::~MateriaSource() {

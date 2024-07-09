@@ -4,8 +4,12 @@
 
 Character::Character(void)
 {
-	std::cout << "Default Character constructor called" << std::endl;
+	// std::cout << "Default Character constructor called" << std::endl;
 	this->_name = "Default Character";
+	for (size_t i = 0; i < 4; i++)
+	{
+		_materias[i] = NULL;
+	}
 	for (size_t i = 0; i < 100; i++)
 	{
 		_addresses[i] = NULL;
@@ -15,6 +19,10 @@ Character::Character(void)
 Character::Character(std::string name)
 {
 	this->_name = name;
+	for (size_t i = 0; i < 4; i++)
+	{
+		_materias[i] = NULL;
+	}
 	for (size_t i = 0; i < 100; i++)
 	{
 		_addresses[i] = NULL;
@@ -23,7 +31,7 @@ Character::Character(std::string name)
 
 Character::~Character(void)
 {
-	std::cout << "Character destructor called" << std::endl;
+	// std::cout << "Character destructor called" << std::endl;
 	for (int i = 0; i < 100; ++i)
 	{
 		if (_addresses[i])
@@ -81,8 +89,7 @@ std::string const &Character::getName(void) const
 	return this->_name;
 }
 void Character::equip(AMateria *m)
-{
-	//TODO: not working  
+{	
 	for (size_t i = 0; i < 4; i++)
 	{
 		if (this->_materias[i] == NULL)
@@ -98,31 +105,28 @@ void Character::unequip(int idx)
 	if (idx > 4)
 		return;
 	saveAdress(_materias[idx]);
-	_materias[idx] = NULL;	
+	_materias[idx] = NULL;
 }
 void Character::use(int idx, ICharacter &target)
 {
-    if (idx < 0 || idx >= 4 || !_materias[idx]) {
-        std::cout << "Invalid index or no materia equipped at index " << idx << std::endl;
-        return;
-    }
-
-//! ==331875==ERROR: AddressSanitizer: SEGV on unknown address (pc 0x7fcfd4317148 bp 0x7ffe5bfc9b30 sp 0x7ffe5bfc9a18 T0)
-	std::cout << _materias[idx] << std::endl;
-	(void) target;
-    // std::string type = _materias[idx]->getType();
+	if (idx < 0 || idx >= 4 || !_materias[idx])
+	{
+		std::cout << "Invalid index or no materia equipped at index " << idx << std::endl;
+		return;
+	}
 	
-    // if (type == "ice") {
-    //     Ice ice;
-    //     ice.use(target);
-    // } else if (type == "cure") {
-    //     Cure cure;
-    //     cure.use(target);
-    // } else {
-    //     std::cout << "Unknown materia type: " << type << std::endl;
-    // }
-}
+	std::string type = _materias[idx]->getType();
 
+	if (type == "ice") {
+	    Ice ice;
+	    ice.use(target);
+	} else if (type == "cure") {
+	    Cure cure;
+	    cure.use(target);
+	} else {
+	    std::cout << "Unknown materia type: " << type << std::endl;
+	}
+}
 
 void Character::saveAdress(AMateria *adress)
 {

@@ -3,12 +3,12 @@
 
 AMateria::AMateria(void)
 {
-	std::cout << "AMateria default constructor" << std::endl;
+	// std::cout << "AMateria default constructor" << std::endl;
 }
 
 AMateria::~AMateria(void)
 {
-	std::cout << "AMateria destructor called" << std::endl;
+	// std::cout << "AMateria destructor called" << std::endl;
 }
 
 AMateria &AMateria::operator=(const  AMateria& am)

@@ -3,13 +3,13 @@
 
 Cure::Cure(void) : AMateria()
 {
-	std::cout << "Default Cure constructor" << std::endl;
+	// std::cout << "Default Cure constructor" << std::endl;
 	this->_type =  "cure";
 }
 
 Cure::~Cure(void)
 {
-	std::cout << "Cure destructor called" << std::endl;
+	// std::cout << "Cure destructor called" << std::endl;
 }
 
 Cure &Cure::operator=(const Cure& c)
@@ -26,7 +26,7 @@ Cure::Cure(const Cure& c)
 
 void Cure::use(ICharacter& target)
 {
-	std::cout << "* heals " << target.getName() <<"'s wounds *" << target.getName() << std::endl;
+	std::cout << "* heals " << target.getName() <<"'s wounds *" << std::endl;
 }
 
 AMateria* Cure::clone(void) const
