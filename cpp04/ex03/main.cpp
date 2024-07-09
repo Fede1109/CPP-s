@@ -12,13 +12,10 @@ int main()
 	src->learnMateria(new Cure());
 	AMateria *tmp;
 	tmp = src->createMateria("cure");	
-	/*
-	! ==307984==ERROR: LeakSanitizer: detected memory leaks
-	*/
 	ICharacter *me = new Character("me");
 	me->equip(tmp);
-	// tmp = src->createMateria("ice");
-	// me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
 	// ICharacter *bob = new Character("bob");
 	// me->use(0, *bob);
 	// me->use(1, *bob);
