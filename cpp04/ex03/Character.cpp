@@ -23,14 +23,46 @@ Character::~Character(void)
 			delete _addresses[i];
 			_addresses[i] = NULL;
 		}
-	}	
+	}
 }
-// TODO: Checkear deepcopies
 Character &Character::operator=(const Character &c)
 {
+	if (this != &c)
+	{
+		for (size_t i = 0; i < 4; ++i)
+		{
+			delete _materias[i];
+			_materias[i] = NULL;
+		}
+		for (size_t i = 0; i < 100; ++i)
+		{
+			delete _addresses[i];
+			_addresses[i] = NULL;
+		}
+
+		for (size_t i = 0; i < 4; ++i)
+		{
+			if (c._materias[i])
+			{
+				_materias[i] = c._materias[i]->clone();
+			}
+		}
+
+		for (size_t i = 0; i < 100; ++i)
+		{
+			if (c._addresses[i])
+			{
+				_addresses[i] = c._addresses[i]->clone();
+			}
+		}
+
+		_name = c._name;
+	}
+
 	this->_name = c._name;
 	return *this;
 }
+
 Character::Character(const Character &c)
 {
 	*this = c;
@@ -44,10 +76,10 @@ void Character::equip(AMateria *m)
 {
 	for (size_t i = 0; i < 4; i++)
 	{
-		if (this->materias[i] == NULL)
+		if (this->_materias[i] == NULL)
 		{
-			this->materias[i] = m;
-			break;
+			this->_materias[i] = m;
+			return;
 		}
 	}
 }
@@ -56,8 +88,8 @@ void Character::unequip(int idx)
 {
 	if (idx > 4)
 		return;
-	saveAdress(materias[idx]);
-	materias[idx] = NULL;
+	saveAdress(_materias[idx]);
+	_materias[idx] = NULL;
 	// delete materias[idx];
 }
 void Character::use(int idx, ICharacter &target)
@@ -65,9 +97,9 @@ void Character::use(int idx, ICharacter &target)
 	Cure *c = NULL;
 	Ice *i = NULL;
 
-	if (this->materias[idx]->getType() == "Ice")
+	if (this->_materias[idx]->getType() == "Ice")
 		c->use(target);
-	else if (this->materias[idx]->getType() == "Cure")
+	else if (this->_materias[idx]->getType() == "Cure")
 		i->use(target);
 }
 

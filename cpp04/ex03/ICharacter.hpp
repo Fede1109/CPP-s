@@ -8,7 +8,7 @@ class ICharacter
 {
 protected:
 	std::string _name;
-	AMateria *materias[4];
+	AMateria *_materias[4];
 
 public:	
 	virtual ~ICharacter() {}

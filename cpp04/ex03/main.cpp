@@ -11,13 +11,15 @@ int main()
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 	AMateria *tmp;
-	tmp = src->createMateria("ice");
-	//TODO: AddressSanitizer: SEGV on unknown address (pc 0x0000004cf5d3 bp 0x7ffd61c377e0 sp 0x7ffd61c37770 T0) on deleting  new Character
-	// ICharacter *me = new Character("me");
+	tmp = src->createMateria("cure");	
+	/*
+	! ==307984==ERROR: LeakSanitizer: detected memory leaks
+	*/
+	ICharacter *me = new Character("me");
+	me->equip(tmp);
+	// tmp = src->createMateria("ice");
 	// me->equip(tmp);
-	tmp = src->createMateria("cure");
-	// me->equip(tmp);
-	ICharacter *bob = new Character("bob");
+	// ICharacter *bob = new Character("bob");
 	// me->use(0, *bob);
 	// me->use(1, *bob);
 	// delete bob;
