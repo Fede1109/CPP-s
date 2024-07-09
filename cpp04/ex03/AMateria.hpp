@@ -9,8 +9,8 @@ class ICharacter;
 class AMateria
 {
 	protected:
-	public:
 		std::string	_type;
+	public:
 	AMateria(void);
 	virtual ~AMateria(void);
 	AMateria&  operator=(const AMateria& am);

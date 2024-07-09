@@ -82,6 +82,7 @@ std::string const &Character::getName(void) const
 }
 void Character::equip(AMateria *m)
 {
+	//TODO: not working  
 	for (size_t i = 0; i < 4; i++)
 	{
 		if (this->_materias[i] == NULL)
@@ -97,8 +98,7 @@ void Character::unequip(int idx)
 	if (idx > 4)
 		return;
 	saveAdress(_materias[idx]);
-	_materias[idx] = NULL;
-	// delete materias[idx];
+	_materias[idx] = NULL;	
 }
 void Character::use(int idx, ICharacter &target)
 {
@@ -109,17 +109,18 @@ void Character::use(int idx, ICharacter &target)
 
 //! ==331875==ERROR: AddressSanitizer: SEGV on unknown address (pc 0x7fcfd4317148 bp 0x7ffe5bfc9b30 sp 0x7ffe5bfc9a18 T0)
 	std::cout << _materias[idx] << std::endl;
-    std::string type = _materias[idx]->getType();
+	(void) target;
+    // std::string type = _materias[idx]->getType();
 	
-    if (type == "ice") {
-        Ice ice;
-        ice.use(target);
-    } else if (type == "cure") {
-        Cure cure;
-        cure.use(target);
-    } else {
-        std::cout << "Unknown materia type: " << type << std::endl;
-    }
+    // if (type == "ice") {
+    //     Ice ice;
+    //     ice.use(target);
+    // } else if (type == "cure") {
+    //     Cure cure;
+    //     cure.use(target);
+    // } else {
+    //     std::cout << "Unknown materia type: " << type << std::endl;
+    // }
 }
 
 
