@@ -8,50 +8,67 @@ Character::Character(void)
 	this->_name = "Default Character";
 }
 
-Character::~Character (void)
+Character::~Character(void)
 {
+	int i = 0;
 	std::cout << "Character destructor called" << std::endl;
+	while (_addresses[i])
+	{
+		delete[] _addresses[i];
+		i++;
+	}
+	delete[] _addresses;
 }
 
-Character& Character::operator=(const Character& c)
+Character &Character::operator=(const Character &c)
 {
 	this->_name = c._name;
 	return *this;
 }
-Character::Character(const Character& c)
+Character::Character(const Character &c)
 {
 	*this = c;
 }
 
-std::string const&  Character::getName(void) const
+std::string const &Character::getName(void) const
 {
 	return this->_name;
 }
-void Character::equip(AMateria* m)
+void Character::equip(AMateria *m)
 {
 	for (size_t i = 0; i < 4; i++)
 	{
 		if (this->materias[i] == NULL)
 		{
 			this->materias[i] = m;
-			break ;
+			break;
 		}
 	}
 }
 
-void	Character::unequip(int idx)
+void Character::unequip(int idx)
 {
-	
+	if (idx > 4)
+		return ;
+	saveAdress(materias[idx]);
+	materias[idx] = NULL;
+	// delete materias[idx];
 }
-void	Character::use(int idx, ICharacter& target)
+void Character::use(int idx, ICharacter &target)
 {
-	Cure	*c;
-	Ice		*i;
+	Cure *c;
+	Ice *i;
 	if (this->materias[idx]->getType() == "Ice")
 		c->use(target);
-		// std::cout << "* shoots an ice bolt at" << target.getName() << std::endl;
 	else if (this->materias[idx]->getType() == "Cure")
 		i->use(target);
-		// std::cout << "* heals " << target.getName() <<"'s wounds *" << target.getName() << std::endl;
+}
 
+void Character::saveAdress(AMateria *adress)
+{
+	for (size_t i = 0; i < 50; i++)
+	{
+		_addresses[i] = adress;
+	}
+	
 }

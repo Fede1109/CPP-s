@@ -6,9 +6,13 @@
 class Character: public ICharacter
 {
 
+private:
+	AMateria	*_addresses[100];
+	void	saveAdress(AMateria *adress);
 public:	
 	Character(void);
 	Character(const Character& c);
+	
 	Character &operator=(const Character& c);
 	~Character(void);
 	std::string const& getName() const;
