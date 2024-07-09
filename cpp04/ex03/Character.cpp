@@ -32,14 +32,15 @@ Character::Character(std::string name)
 Character::~Character(void)
 {
 	// std::cout << "Character destructor called" << std::endl;
-	for (int i = 0; i < 100; ++i)
-	{
-		if (_addresses[i])
-		{
-			delete _addresses[i];
-			_addresses[i] = NULL;
-		}
-	}
+	// for (int i = 0; i < 100; ++i)
+	// {
+	// 	if (_addresses[i] != NULL)
+	// 	{
+	// 		delete _addresses[i];
+	// 		_addresses[i] = NULL;
+	// 	}
+	// }
+	// delete[] _addresses;
 }
 Character &Character::operator=(const Character &c)
 {
