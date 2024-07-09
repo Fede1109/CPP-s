@@ -12,15 +12,16 @@ int main()
 	src->learnMateria(new Cure());
 	AMateria *tmp;
 	tmp = src->createMateria("cure");	
+	std::cout << "-----------------" << std::endl;
 	ICharacter *me = new Character("me");
 	me->equip(tmp);
-	tmp = src->createMateria("ice");
-	me->equip(tmp);
+	// tmp = src->createMateria("ice");
+	// me->equip(tmp);
 	// ICharacter *bob = new Character("bob");
 	// me->use(0, *bob);
 	// me->use(1, *bob);
 	// delete bob;
-	// delete me;
+	delete me;
 	delete src;
 	return 0;
 }

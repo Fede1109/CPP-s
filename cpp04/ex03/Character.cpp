@@ -6,11 +6,19 @@ Character::Character(void)
 {
 	std::cout << "Default Character constructor called" << std::endl;
 	this->_name = "Default Character";
+	for (size_t i = 0; i < 100; i++)
+	{
+		_addresses[i] = NULL;
+	}
 }
 
 Character::Character(std::string name)
 {
 	this->_name = name;
+	for (size_t i = 0; i < 100; i++)
+	{
+		_addresses[i] = NULL;
+	}
 }
 
 Character::~Character(void)
