@@ -1,6 +1,6 @@
-NAME = animal
+NAME = amateria
 
-SRCS = main.cpp AMateria.cpp Cure.cpp Ice.cpp ICharacter.cpp
+SRCS = AMateria.cpp Cure.cpp Ice.cpp Character.cpp main.cpp MateriaSource.cpp 
 
 OBJS = $(SRCS:.cpp=.o)
 
