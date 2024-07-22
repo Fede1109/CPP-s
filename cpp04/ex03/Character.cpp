@@ -105,8 +105,13 @@ void Character::unequip(int idx)
 {
 	if (idx > 4)
 		return;
-	saveAdress(_materias[idx]);
-	_materias[idx] = NULL;
+	if (_materias[idx] != NULL)
+	{
+		saveAdress(_materias[idx]);
+		_materias[idx] = NULL;
+		return ;
+	}
+	std::cout << "Nothing to unequip!" << std::endl;
 }
 void Character::use(int idx, ICharacter &target)
 {

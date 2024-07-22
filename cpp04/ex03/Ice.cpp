@@ -21,7 +21,7 @@ Ice &Ice::operator=(const Ice& c)
 Ice::Ice(const Ice& c)
 {
 	*this = c;
-	std::cout << "Ice copy constructor called" << std::endl;
+	// std::cout << "Ice copy constructor called" << std::endl;
 }
 
 void Ice::use(ICharacter& target)

@@ -45,3 +45,17 @@ AMateria *MateriaSource::createMateria(std::string const &type)
 	std::cout << "No materia found" << std::endl;
 	return (NULL);
 }
+
+MateriaSource& MateriaSource::operator=(const MateriaSource &ms)
+{
+	for (size_t i = 0; i < 4; i++)
+	{
+		this->_learnedMaterias[i] = ms._learnedMaterias[i];
+	}
+	return *this;
+}
+
+MateriaSource::MateriaSource(const MateriaSource &ms)
+{
+	*this = ms;
+}
