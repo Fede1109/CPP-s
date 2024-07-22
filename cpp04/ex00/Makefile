@@ -1,6 +1,6 @@
 NAME = animal
 
-SRCS = main.cpp Dog.cpp Cat.cpp Animal.cpp
+SRCS = main.cpp Dog.cpp Cat.cpp Animal.cpp WrongCat.cpp WrongAnimal.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
