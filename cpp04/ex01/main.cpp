@@ -6,9 +6,13 @@ int main()
 {
 	Animal *animals[50];
 
-	Dog basic;
+	Cat test;
 	{
-		Dog tmp = basic;
+		Cat tmp = test;
+	}
+	Dog tmp1;
+	{
+		Dog tmp2 = tmp1;
 	}
 	for (size_t i = 0; i < 25; i++)
 	{

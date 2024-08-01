@@ -14,8 +14,12 @@ Cat::~Cat(void)
 }
 Cat &Cat::operator=(const Cat& d)
 {
-    this->_brain = d._brain;
-    this->_type = d._type;
+    if (this != &d)
+    {
+        delete _brain;
+        _brain = new Brain(*d._brain);
+        _type = d._type;
+    }    
     return *this;
 }
 
