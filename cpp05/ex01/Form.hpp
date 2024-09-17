@@ -3,32 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:11:12 by fede              #+#    #+#             */
-/*   Updated: 2024/09/14 16:03:20 by fede             ###   ########.fr       */
+/*   Updated: 2024/09/17 15:45:59 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 #define FORM_HPP
 #include <iostream>
+#include "Bureaucrat.hpp"
 
 class Bureaucrat;
 class Form
 {
 private:
-	std::string const _name;
+	const std::string _name;
 	bool _isSigned;
 	int const _grade;
 	int const _exec;
 
 public:
-	Form(const std::string name, const int signature, const int exec);
-	Form(const Form &form);
+	Form ( void );
+	Form(const std::string name, const int grade, const int exec);
+	Form(Form &form);
 	Form &operator=(const Form &form);
 	~Form(void);
-	int getSignatureGrade(void);
+	int getGrade(void);
 	int getExecutionGrade(void);
 	const std::string getName(void);
 	bool getSigned(void);
