@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:11:19 by fede              #+#    #+#             */
-/*   Updated: 2024/09/17 16:08:00 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:26:38 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Form &Form::operator=(const Form &f)
 	return (*this);
 }
 
-Form::Form(Form &f) : _exec(f._exec), _grade(f._grade)
+Form::Form(Form &f) :  _grade(f._grade), _exec(f._exec)
 {
 	*this = f;
 }
@@ -81,7 +81,7 @@ void Form::beSigned(Bureaucrat &bur)
 		std::cout << bur.getName() << " signed " << this->_grade << std::endl;
 	}
 	else
-		std::cout << bur.getName() << " couldn't sign " << this->getName() << "because" << bur.getName() << "doesn't have enough grade" << std::endl;
+		std::cout << bur.getName() << " couldn't sign " << this->getName() << " because " << bur.getName() << " doesn't have enough grade" << std::endl;
 }
 
 char const *Form::GradeTooHighException::what(void) const throw()

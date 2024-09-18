@@ -3,64 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:56:52 by fede              #+#    #+#             */
-/*   Updated: 2024/09/13 20:06:42 by fede             ###   ########.fr       */
+/*   Updated: 2024/09/18 12:27:34 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(void)
 {
-	std::cout << "------------------------" << std::endl;
-	Bureaucrat *god = new Bureaucrat("GOD", 150);
-	std::cout << *god << std::endl;
+	Bureaucrat jose("José", 10);
 	try
 	{
-		std::cout << "Increment: " << std::flush;
-		god->incrementGrade();
-		std::cout << *god << std::endl;
+		for (size_t i = 0; i < 150; i++)
+		{
+			jose.incrementGrade();
+		}
+		std::cout << jose << std::endl;
+		jose.incrementGrade();
+		std::cout << jose << std::endl;
+		
 	}
-	catch (const std::exception &e)
+	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << e.what() << '\n';
 	}
+	
 	try
 	{
-		std::cout << "Double Decrement: " << std::flush;
-		god->decrementGrade();
-		std::cout << *god << std::endl;
-		god->decrementGrade();
-		std::cout << *god << std::endl;
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	delete god;
-	std::cout << "------------------------" << std::endl;
-	try
-	{
-		Bureaucrat juanito("juanito", 151);
-		std::cout << juanito << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	std::cout << "------------------------" << std::endl;
-	try
-	{
-		Bureaucrat pepe("pepe", 0);
+		Bureaucrat ramon("Ramón", 1000);
+		Bureaucrat pepe(ramon);
+		std::cout << ramon << std::endl;
 		std::cout << pepe << std::endl;
+		Form gdpr("GDPR", 3, 8);
+		gdpr.beSigned(jose);
+		jose.signForm(gdpr);
+		std::cout << gdpr << std::endl;
 	}
-	catch (std::exception &e)
+	catch(const std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
-	std::cout << "------------------------" << std::endl;
+	
+	Bureaucrat juan("Juan", 10);
+	Form	f1("Form", 15, 12);
+	Form	f2("Form", 5, 9);
+	
+	f1.beSigned(juan);
+	f2.beSigned(juan);
 	return (0);
 }
