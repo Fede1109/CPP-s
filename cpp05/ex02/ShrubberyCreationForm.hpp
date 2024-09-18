@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 20:11:12 by fede              #+#    #+#             */
-/*   Updated: 2024/09/18 12:38:08 by fdiaz-gu         ###   ########.fr       */
+/*   Created: 2024/09/18 12:57:57 by fdiaz-gu          #+#    #+#             */
+/*   Updated: 2024/09/18 15:33:34 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef SHRUBBERRYCREATIONFORM_HPP
+#define SHRUBBERRYCREATIONFORM_HPP
 #include <iostream>
-#include "Bureaucrat.hpp"
-
-class Bureaucrat;
-class AForm
+#include "AForm.hpp"
+class ShrubberyCreationForm
 {
 private:
+	const std::string _target;
 	const std::string _name;
 	bool _isSigned;
-	int const _grade;
-	int const _exec;
+	const int _req_grade;
+	const int _req_exec;
 
 public:
-	AForm ( void );
-	AForm(const std::string name, const int grade, const int exec);
-	AForm(AForm &form);
-	AForm &operator=(const AForm &form);
-	~AForm(void);
-	int getGrade(void);
-	int getExecutionGrade(void);
-	const std::string getName(void);
+	ShrubberyCreationForm(void);
+	ShrubberyCreationForm(const std::string target);
+	ShrubberyCreationForm(ShrubberyCreationForm &scf);
+	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &scf);
+	~ShrubberyCreationForm(void);
+	std::string getName(void);
+	std::string getTarget(void);
+	int getReqGrade(void);
+	int getReqExec(void);
 	bool getSigned(void);
-	void beSigned(Bureaucrat& bur);
-
 	class GradeTooHighException : public std::exception
 	{
 	public:
@@ -47,5 +45,7 @@ public:
 		virtual char const *what(void) const throw();
 	};
 };
-	std::ostream& operator<<(std::ostream& stream, AForm& form);
+
+std::ostream &operator<<(std::ostream &stream, ShrubberyCreationForm &scf);
+
 #endif

@@ -6,12 +6,12 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:39:43 by fede              #+#    #+#             */
-/*   Updated: 2024/09/18 12:38:08 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:27:02 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat( void ): _name(""), _grade(150)
 {

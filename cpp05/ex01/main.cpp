@@ -6,11 +6,10 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:56:52 by fede              #+#    #+#             */
-/*   Updated: 2024/09/18 12:27:34 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:39:48 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
