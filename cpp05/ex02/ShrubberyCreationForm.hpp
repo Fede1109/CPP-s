@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:57:57 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/09/18 15:33:34 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:36:52 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,14 @@ public:
 	ShrubberyCreationForm(ShrubberyCreationForm &scf);
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &scf);
 	~ShrubberyCreationForm(void);
-	std::string getName(void);
-	std::string getTarget(void);
-	int getReqGrade(void);
-	int getReqExec(void);
-	bool getSigned(void);
-	class GradeTooHighException : public std::exception
-	{
-	public:
-		virtual char const *what(void) const throw();
-	};
-	class GradeTooLowException : public std::exception
-	{
-	public:
-		virtual char const *what(void) const throw();
-	};
+	
+	void execute(Bureaucrat const &executor) const;
+	std::string getName(void) const;
+	std::string getTarget(void) const;
+	int getReqGrade(void) const;
+	int getReqExec(void) const;
+	bool getSigned(void) const;
+
 };
 
 std::ostream &operator<<(std::ostream &stream, ShrubberyCreationForm &scf);

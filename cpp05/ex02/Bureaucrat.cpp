@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:39:43 by fede              #+#    #+#             */
-/*   Updated: 2024/09/18 15:27:02 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:53:43 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,16 @@ void Bureaucrat::signForm(AForm &form)
 
 }
 
-std::ostream	&operator<<(std::ostream &str, Bureaucrat  &bureaucrat)
+void	Bureaucrat::executeForm(AForm const &form)
 {
-	return (str << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade());
+	if (form.getExecutionGrade() < this->_grade)
+		std::cout << this->_name << " could not execute " << form.getName() << " because its grade is too low." << std::endl;
+	else
+		std::cout << this->_name << " executed " << form.getName() << "." << std::endl;
+	return;
+}
+
+std::ostream	&operator<<(std::ostream &st, Bureaucrat  &bureaucrat)
+{
+	st << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
 }

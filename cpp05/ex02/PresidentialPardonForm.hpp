@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:29:27 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/09/18 15:45:39 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:43:05 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ public:
 	PresidentialPardonForm(PresidentialPardonForm &ppf);
 	PresidentialPardonForm &operator=(const PresidentialPardonForm &ppf);
 	~PresidentialPardonForm(void);
-	std::string getName(void);
-	std::string getTarget(void);
-	int getReqGrade(void);
-	int getReqExec(void);
-	bool getSigned(void);
+	std::string getName(void) const ;
+	std::string getTarget(void) const;
+	int getReqGrade(void) const;
+	int getReqExec(void) const;
+	bool getSigned(void) const;
+	void execute(Bureaucrat const &executor) const;
 };
 
 std::ostream &operator<<(std::ostream &str, PresidentialPardonForm &ppf);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:11:12 by fede              #+#    #+#             */
-/*   Updated: 2024/09/18 13:28:16 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:36:54 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,22 @@ public:
 	virtual const std::string getName(void) const = 0;
 	virtual bool getSigned(void) const = 0;
 	virtual void beSigned(Bureaucrat& bur) const = 0;
+	virtual void execute(Bureaucrat const &executor) const = 0;
+	class FormNotSigned: public std::exception
+		{
+			public:
+				const char * what( void ) const throw();
+		};
+		class GradeTooHighException : public std::exception
+	{
+	public:
+		virtual char const *what(void) const throw();
+	};
+	class GradeTooLowException : public std::exception
+	{
+	public:
+		virtual char const *what(void) const throw();
+	};
 
 	
 };
