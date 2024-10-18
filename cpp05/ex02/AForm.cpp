@@ -6,7 +6,7 @@
 /*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:11:19 by fede              #+#    #+#             */
-/*   Updated: 2024/10/17 17:37:23 by fede             ###   ########.fr       */
+/*   Updated: 2024/10/19 00:02:45 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,40 @@ AForm::AForm(const std::string name, const int grade, const int exec) : _name(na
 AForm &AForm::operator=(const AForm &f)
 {
 	if (this != &f)
+	{
+		(std::string) this->_name = f._name; 
 		this->_isSigned = f._isSigned;
+	}
 	return (*this);
 }
 
-AForm::AForm(AForm &f) :  _grade(f._grade), _exec(f._exec)
+
+int AForm::getGrade(void) const
+{
+	return this->_grade;
+}
+
+int AForm::getExecutionGrade(void) const
+{
+	return (this->_exec);
+}
+
+const std::string AForm::getName(void) const
+{
+	return this->_name;
+}
+void AForm::beSigned(Bureaucrat &bur)
+{
+	if (bur.getGrade() > this->_grade)
+		throw GradeTooLowException();
+	this->_isSigned = true;
+}
+
+bool AForm::getSigned(void) const
+{
+	return this->_isSigned;
+}
+AForm::AForm(const AForm &f) :  _grade(f._grade), _exec(f._exec)
 {
 	*this = f;
 }

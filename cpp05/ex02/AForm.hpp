@@ -6,7 +6,7 @@
 /*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:11:12 by fede              #+#    #+#             */
-/*   Updated: 2024/10/17 17:36:54 by fede             ###   ########.fr       */
+/*   Updated: 2024/10/19 00:03:45 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ private:
 public:
 	AForm ( void );
 	AForm(const std::string name, const int grade, const int exec);
-	AForm(AForm &form);
+	AForm(const AForm &form);
 	AForm &operator=(const AForm &form);
-	~AForm(void);
-	virtual int getGrade(void) const = 0;
-	virtual int getExecutionGrade(void) const = 0;
-	virtual const std::string getName(void) const = 0;
-	virtual bool getSigned(void) const = 0;
-	virtual void beSigned(Bureaucrat& bur) const = 0;
+	virtual ~AForm(void);
+	int getGrade(void) const;
+	int getExecutionGrade(void) const;
+	const std::string getName(void) const;
+	bool getSigned(void) const;
+	void beSigned(Bureaucrat& bur) ;
 	virtual void execute(Bureaucrat const &executor) const = 0;
 	class FormNotSigned: public std::exception
 		{
