@@ -6,7 +6,7 @@
 /*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:35:32 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/10/19 00:06:44 by fede             ###   ########.fr       */
+/*   Updated: 2024/10/19 00:11:45 by fede             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(void)
 		target = "él";
 		Bureaucrat *michael = new Bureaucrat("Michael", 140);
 		ShrubberyCreationForm *sf = new ShrubberyCreationForm(target);
-		michael->executeForm(*sf);
+		michael->executeForm(*sf); 
 		michael->signForm(*sf);
 		michael->executeForm(*sf);
 		pepe->executeForm(*sf);
