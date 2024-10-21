@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:35:32 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/10/19 13:46:23 by fede             ###   ########.fr       */
+/*   Updated: 2024/10/21 12:01:37 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,21 @@ int main(void)
 {
 	std::string target;
 	Bureaucrat *pepe = new Bureaucrat("pepe", 1);
-	Intern *intern1 = new Intern();
-	intern1->makeForm("ShrubberyCreationForm", "Juan");
+	Intern intern1;
+	AForm *sf;
+	sf = intern1.makeForm("ShrubberyCreationForm", "Juan");	
 	std::cout << "------------------------------------" << std::endl;
 	{
 		target = "él";
-		Bureaucrat *michael = new Bureaucrat("Michael", 140);
+		Bureaucrat *jorge = new Bureaucrat("jorge", 140);
 		ShrubberyCreationForm *sf = new ShrubberyCreationForm(target);
-		michael->executeForm(*sf); 
-		michael->signForm(*sf);
-		michael->executeForm(*sf);
+		jorge->executeForm(*sf); 
+		jorge->signForm(*sf);
+		jorge->executeForm(*sf);
 		pepe->executeForm(*sf);
-		std::cout << *michael << std::endl;
+		std::cout << *jorge << std::endl;
 		std::cout << *sf << std::endl;
-		delete michael;
+		delete jorge;
 		delete sf;
 	}
 	std::cout << "------------------------------------" << std::endl;
@@ -58,6 +59,7 @@ int main(void)
 		delete jose;
 		delete ppf;
 	}
+	delete sf;
 	delete pepe;
 	return 0;
 }
