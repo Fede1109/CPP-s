@@ -6,7 +6,7 @@
 /*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:35:32 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/10/21 11:50:42 by fdiaz-gu         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:04:49 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int main(void)
 		juan->executeForm(*sf);
 		pepe->executeForm(*sf);
 		pepe->signForm(*sf);
-		// std::cout << "------------------------------------" << std::endl;
 		try
 		{
 			sf->execute(*pepe);
@@ -38,9 +37,6 @@ int main(void)
 		{
 			std::cerr << e.what() << std::endl;
 		}
-
-		// std::cout << "------------------------------------" << std::endl;
-
 		std::cout << *juan << std::endl;
 		std::cout << *sf << std::endl;
 		delete juan;
@@ -52,8 +48,17 @@ int main(void)
 		Bureaucrat *juan = new Bureaucrat("juan", 70);
 		RobotomyRequestForm *rrf = new RobotomyRequestForm(target);
 		juan->signForm(*rrf);
+		pepe->signForm(*rrf);
 		juan->executeForm(*rrf);
 		pepe->executeForm(*rrf);
+		try
+		{
+			rrf->execute(*pepe);
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 		delete juan;
 		delete rrf;
 	}
@@ -63,6 +68,14 @@ int main(void)
 		Bureaucrat *jose = new Bureaucrat("jose", 20);
 		PresidentialPardonForm *ppf = new PresidentialPardonForm(target);
 		jose->signForm(*ppf);
+		try
+		{
+			ppf->execute(*pepe);
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 		jose->executeForm(*ppf);
 		pepe->executeForm(*ppf);
 		delete jose;
