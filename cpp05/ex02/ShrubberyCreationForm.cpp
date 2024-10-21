@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:40:56 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/10/18 21:24:49 by fede             ###   ########.fr       */
+/*   Updated: 2024/10/21 11:51:03 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fstream>
 #include "ShrubberyCreationForm.hpp"
+
 ShrubberyCreationForm::ShrubberyCreationForm(std::string &target)
 	: AForm("ShrubberyCreationForm", 145, 137), _target(target) {}
 
@@ -36,9 +37,9 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	if (this->getSigned())
 	{
 		if (executor.getGrade() > this->getExecutionGrade())
-			throw(AForm::GradeTooLowException());
+			throw(GradeTooLowException());
 		std::string filename = this->_target + "_shrubbery";
-		std::ofstream outfile (filename);
+		std::ofstream outfile (filename.c_str());
 		outfile << "          |>>> " << std::endl;
 		outfile << "          |    " << std::endl;
 		outfile << "      _  _|_  _    " << std::endl;
@@ -57,6 +58,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	}
 	else
 	{
-		throw(AForm::FormNotSigned());
+		throw(FormNotSigned());
 	}
 }

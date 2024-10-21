@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fede <fede@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fdiaz-gu <fdiaz-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:35:32 by fdiaz-gu          #+#    #+#             */
-/*   Updated: 2024/10/19 00:11:45 by fede             ###   ########.fr       */
+/*   Updated: 2024/10/21 11:50:42 by fdiaz-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,28 @@ int main(void)
 
 	{
 		target = "él";
-		Bureaucrat *michael = new Bureaucrat("Michael", 140);
+		Bureaucrat *juan = new Bureaucrat("juan", 140);
 		ShrubberyCreationForm *sf = new ShrubberyCreationForm(target);
-		michael->executeForm(*sf); 
-		michael->signForm(*sf);
-		michael->executeForm(*sf);
+		juan->executeForm(*sf);
+		juan->signForm(*sf);
+		juan->executeForm(*sf);
 		pepe->executeForm(*sf);
-		std::cout << *michael << std::endl;
+		pepe->signForm(*sf);
+		// std::cout << "------------------------------------" << std::endl;
+		try
+		{
+			sf->execute(*pepe);
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+
+		// std::cout << "------------------------------------" << std::endl;
+
+		std::cout << *juan << std::endl;
 		std::cout << *sf << std::endl;
-		delete michael;
+		delete juan;
 		delete sf;
 	}
 	std::cout << "------------------------------------" << std::endl;
