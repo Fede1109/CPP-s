@@ -34,6 +34,23 @@ int check_args(std::string data)
 	return (0);
 }
 
+int check_int(const std::string &data)
+{
+	size_t i = 0;
+	if (data[0] == '-' && data.size() > 1)
+	{
+		i = 1;
+	}
+	for (; i < data.size(); i++)
+	{
+		if ((!std::isdigit(data[i])) && data[i] != '.' && data[i] != 'f')
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+
 int get_type(const std::string &data, int length)
 {
 	if (length == 1)
@@ -45,6 +62,10 @@ int get_type(const std::string &data, int length)
 	}
 	if (length > 1)
 	{
+		if (data == "nan" || data == "+inf" || data == "+inff" || data == "-inf" || data == "-inff")
+			return IS_PLITERAL;
+		if (check_int(data))
+			return TYPE_UNRECOGNIZED;
 		bool hasDecimalPoint = (data.find('.') != std::string::npos);
 		bool hasF = (data.find('f') != std::string::npos);
 		if (hasDecimalPoint)
@@ -54,13 +75,59 @@ int get_type(const std::string &data, int length)
 	}
 	return TYPE_UNRECOGNIZED;
 }
-
 void convert_char(std::string data)
-{	
-	std::cout << "char: " + data <<std::endl;
-	std::cout << "int: " << data[0] - '0'  << std::endl;
+{
+	std::cout << "char: " + data << std::endl;
+	std::cout << "int: " << data[0] - '0' << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
+	std::cout << "float: " << static_cast<float>(data[0] - '0') << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(data[0] - '0') << std::endl;
 }
 
+void convert_double(std::string data)
+{
+	char *end;
+
+	double long num_float = std::strtod(data.c_str(), &end);
+	std::cout << "char: '*'" << std::endl;
+	if (num_float > std::numeric_limits<int>::max())
+		std::cout << "int: inf" << std::endl;
+	else if (num_float > std::numeric_limits<int>::min())
+		std::cout << "int: -inf" << std::endl;
+	else
+		std::cout << "int: " << roundf(num_float) << std::endl;
+	if (num_float > std::numeric_limits<double>::max())
+	{
+		std::cout << "double: inf" << std::endl;
+		std::cout << "float: inff" << std::endl;
+	}
+	else if (num_float < std::numeric_limits<double>::min())
+	{
+		std::cout << "double: -inf" << std::endl;
+		std::cout << "float: -inff" << std::endl;
+	}
+	else
+	{
+		std::cout << "double: " << num_float << std::endl;
+		std::cout << "float: " << num_float << "f" << std::endl;
+	}
+}
+
+void convert_float(std::string data)
+{
+	char *end;
+
+	double num_float = std::strtod(data.c_str(), &end);
+	std::cout << "char: '*'" << std::endl;
+	std::cout << "int: " << roundf(num_float) << std::endl;
+	std::cout << "double: " << num_float << std::endl;
+	if (num_float > std::numeric_limits<float>::max())
+		std::cout << "float: inf" << std::endl;
+	else if (num_float < std::numeric_limits<float>::min())
+		std::cout << "float: -inf" << std::endl;
+	else
+		std::cout << "float: " << num_float << "f" << std::endl;
+}
 int check_nan(std::string data)
 {
 	if (data == "nan")
@@ -73,6 +140,51 @@ int check_nan(std::string data)
 	}
 	return (0);
 }
+
+int check_inf(std::string data)
+{
+	if (data == "inf" || data == "+inf")
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: inf" << std::endl;
+		std::cout << "float: inf" << std::endl;
+		std::cout << "double: inf" << std::endl;
+		return (1);
+	}
+	if (data == "inf" || data == "-inf")
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: -inf" << std::endl;
+		std::cout << "float: -inf" << std::endl;
+		std::cout << "double: -inf" << std::endl;
+		return (1);
+	}
+	if (data == "inff" || data == "+inff")
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: inff" << std::endl;
+		std::cout << "float: inff" << std::endl;
+		std::cout << "double: inff" << std::endl;
+		return (1);
+	}
+	if (data == "inff" || data == "-inff")
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: -inff" << std::endl;
+		std::cout << "float: -inff" << std::endl;
+		std::cout << "double: -inff" << std::endl;
+		return (1);
+	}
+	return (0);
+}
+void handle_pseudo(std::string data)
+{
+	if (check_nan(data))
+		return;
+	if (check_inf(data))
+		return;
+}
+
 float int_to_float(long num)
 {
 	return (static_cast<float>((num)));
@@ -84,21 +196,15 @@ double int_to_double(long num)
 }
 void convert_int(std::string data)
 {
-	if (check_nan(data))
-		return ;
-	/* TO-CHAR */
 	long n = std::atol(data.c_str());
 	std::cout << "char: " << std::flush;
-    if (n > 2147483647 || n < -2147483648)
-		std::cout << "Imposible" << std::endl;
-	else if (n >= 32 && n <= 126)
+	if (n >= 32 && n <= 126)
 		std::cout << static_cast<char>(n) << std::endl;
 	else
 		std::cout << "Non displayable" << std::endl;
-	/* TO-INT */
 	std::cout << "int: " << std::flush;
-	if (n > 2147483647 || n < -2147483648)
-		std::cout << "imposible" << std::endl;
+	if (n > std::numeric_limits<int>::max() || n < std::numeric_limits<int>::min())
+		std::cout << "inf" << std::endl;
 	else
 		std::cout << n << std::endl;
 	std::cout << std::fixed << std::setprecision(1);
@@ -106,7 +212,7 @@ void convert_int(std::string data)
 	std::cout << "float: " << int_to_float(n) << "f" << std::endl;
 }
 
-void	print_conversion(int type, std::string data)
+void print_conversion(int type, std::string data)
 {
 	switch (type)
 	{
@@ -116,18 +222,25 @@ void	print_conversion(int type, std::string data)
 	case 2:
 		convert_char(data);
 		break;
-	case 3:		
+	case 3:
+		convert_float(data);
 		break;
-	
+	case 4:
+		convert_double(data);
+		break;
+	case 5:
+		handle_pseudo(data);
+		break;
 	default:
+		std::cerr << "Usage -> ./converter <int, char, float or double>" << std::endl;
 		break;
 	}
 }
 void convert(std::string data)
 {
 	int type;
-
 	type = get_type(data, data.size());
-	std::cout << "type: " << get_type(data, data.size()) << std::endl;
+	// std::cout << "type: " << get_type(data, data.size()) << std::endl;
+	// std::cout << std::numeric_limits<double>::max() << std::endl;
 	print_conversion(type, data);
 }
