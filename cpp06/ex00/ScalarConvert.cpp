@@ -4,10 +4,7 @@ ScalarConvert::ScalarConvert(void) {}
 
 ScalarConvert &ScalarConvert::operator=(const ScalarConvert &c)
 {
-	this->_c = c._c;
-	this->_n_int = c._n_int;
-	this->_n_float = c._n_float;
-	this->_n_double = c._n_double;
+	(void) c;
 	return *this;
 }
 
@@ -86,47 +83,49 @@ void convert_char(std::string data)
 
 void convert_double(std::string data)
 {
-	char *end;
-
-	double long num_float = std::strtod(data.c_str(), &end);
-	std::cout << "char: '*'" << std::endl;
-	if (num_float > std::numeric_limits<int>::max())
-		std::cout << "int: inf" << std::endl;
-	else if (num_float > std::numeric_limits<int>::min())
-		std::cout << "int: -inf" << std::endl;
-	else
-		std::cout << "int: " << roundf(num_float) << std::endl;
-	if (num_float > std::numeric_limits<double>::max())
-	{
-		std::cout << "double: inf" << std::endl;
-		std::cout << "float: inff" << std::endl;
-	}
-	else if (num_float < std::numeric_limits<double>::min())
-	{
-		std::cout << "double: -inf" << std::endl;
-		std::cout << "float: -inff" << std::endl;
-	}
-	else
-	{
-		std::cout << "double: " << num_float << std::endl;
-		std::cout << "float: " << num_float << "f" << std::endl;
-	}
+    double num_float = std::atof(data.c_str());
+        std::cout << "char: '*'" << std::endl;
+    if (num_float > std::numeric_limits<int>::max())
+        std::cout << "int: inf" << std::endl;
+    else if (num_float < std::numeric_limits<int>::min())
+        std::cout << "int: -inf" << std::endl;
+    else
+        std::cout << "int: " << static_cast<int>(round(num_float)) << std::endl;
+    if (num_float > std::numeric_limits<double>::max())
+    {
+        std::cout << "double: inf" << std::endl;
+        std::cout << "float: inff" << std::endl;
+    }
+    else if (num_float < -std::numeric_limits<double>::max())
+    {
+        std::cout << "double: -inf" << std::endl;
+        std::cout << "float: -inff" << std::endl;
+    }
+    else
+    {
+        std::cout << "double: " << num_float << std::endl;
+        if (num_float > std::numeric_limits<float>::max())
+            std::cout << "float: inff" << std::endl;
+        else if (num_float < -std::numeric_limits<float>::max())
+            std::cout << "float: -inff" << std::endl;
+        else
+            std::cout << "float: " << static_cast<float>(num_float) << "f" << std::endl;
+    }
 }
+
 
 void convert_float(std::string data)
 {
-	char *end;
-
-	double num_float = std::strtod(data.c_str(), &end);
+	double long num_float = std::atof(data.c_str());
 	std::cout << "char: '*'" << std::endl;
 	std::cout << "int: " << roundf(num_float) << std::endl;
 	std::cout << "double: " << num_float << std::endl;
 	if (num_float > std::numeric_limits<float>::max())
-		std::cout << "float: inf" << std::endl;
-	else if (num_float < std::numeric_limits<float>::min())
-		std::cout << "float: -inf" << std::endl;
-	else
-		std::cout << "float: " << num_float << "f" << std::endl;
+        std::cout << "float: inff" << std::endl;
+    else if (num_float < -std::numeric_limits<float>::max())
+        std::cout << "float: -inff" << std::endl;
+    else
+        std::cout << "float: " << static_cast<float>(num_float) << "f" << std::endl;
 }
 int check_nan(std::string data)
 {
@@ -147,7 +146,7 @@ int check_inf(std::string data)
 	{
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: inf" << std::endl;
-		std::cout << "float: inf" << std::endl;
+		std::cout << "float: inff" << std::endl;
 		std::cout << "double: inf" << std::endl;
 		return (1);
 	}
@@ -155,24 +154,24 @@ int check_inf(std::string data)
 	{
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: -inf" << std::endl;
-		std::cout << "float: -inf" << std::endl;
+		std::cout << "float: -inff" << std::endl;
 		std::cout << "double: -inf" << std::endl;
 		return (1);
 	}
 	if (data == "inff" || data == "+inff")
 	{
 		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: inff" << std::endl;
+		std::cout << "int: inf" << std::endl;
 		std::cout << "float: inff" << std::endl;
-		std::cout << "double: inff" << std::endl;
+		std::cout << "double: inf" << std::endl;
 		return (1);
 	}
 	if (data == "inff" || data == "-inff")
 	{
 		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: -inff" << std::endl;
+		std::cout << "int: -inf" << std::endl;
 		std::cout << "float: -inff" << std::endl;
-		std::cout << "double: -inff" << std::endl;
+		std::cout << "double: -inf" << std::endl;
 		return (1);
 	}
 	return (0);
@@ -236,7 +235,7 @@ void print_conversion(int type, std::string data)
 		break;
 	}
 }
-void convert(std::string data)
+void ScalarConvert::convert(std::string data)
 {
 	int type;
 	type = get_type(data, data.size());

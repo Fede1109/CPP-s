@@ -12,19 +12,14 @@ class ScalarConvert
 
 	
 private:
-	char _c;
-	int _n_int;
-	float _n_float;
-	double _n_double;
-
-public:
 	ScalarConvert(void);
 	ScalarConvert(const ScalarConvert &c);
-	~ScalarConvert();
 	ScalarConvert &operator=(const ScalarConvert &c);
-	// static void convert(std::string data);
+
+public:
+	~ScalarConvert();
+	static void convert(std::string data);
 };
-void convert(std::string data);
 int check_args(std::string data);
 int	get_type(std::string data);
 void print_conversion(int type, std::string data);

@@ -9,6 +9,6 @@ int main (int argc, char **argv)
 	}	
 	if (check_args(argv[1]))
 		return (1);
-	/* ScalarConvert:: */convert(argv[1]);
+	ScalarConvert::convert(argv[1]);
 	return (0);
 }
