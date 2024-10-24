@@ -5,7 +5,7 @@
 template<typename T>
 void iter(T *arr, int len, void (*f) (T const &))
 {
-	if (!arr || !fun)
+	if (!arr || !f)
 		return ;
 	for (int i = 0; i < len; i++)
 	{
