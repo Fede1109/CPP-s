@@ -23,16 +23,19 @@ class Array
 		{
 			delete [] this->_arr;
 		}
-		Array(const Array &arr);
+		Array(const Array &arr)
+		{
+			*this = arr;
+		}
 		Array& operator=(const Array &arr)
 		{
 			this->_len = arr._len;
-			
+			this->_arr = arr._arr;
 			for (unsigned int i = 0; i < arr._len; i++)
 			{
-				this->_arr[i] = 
+				this->_arr[i] = arr.arr[i];
 			}
-			
+			return *this;
 		}
 		T &operator[](unsigned int i)
 		{
