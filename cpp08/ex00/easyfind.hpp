@@ -1,7 +1,8 @@
 #ifndef EASYFIND_HPP
 #define EASYFIND_HPP
 #include <iostream>
-
+#include <algorithm>
+#include <vector>
 class NotMatches : public std::exception
 {
 	public:
@@ -14,9 +15,9 @@ class NotMatches : public std::exception
 template<typename T>
 int	easyfind(T &arr, int num)
 {
-	for (size_t i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
+    for (typename T::iterator it = arr.begin(); it != arr.end(); ++it)
 	{		
-		if (arr[i] == num)
+		if (*it == num)
 		{			
 			return (num);
 		}
