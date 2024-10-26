@@ -1,17 +1,22 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
+#include <iostream>
+#include <numeric>
+#include <iterator>
+#include <vector>
 class Span
 {
 	private:
 		unsigned int _n;
+		std::vector <int> _vec;
 	public:
 		Span(void);
 		~Span(void);
 		Span(const Span &s);
-		Span(unsigned int num);
+		Span(unsigned int N);
 		Span &operator=(const Span &s);
 		void	addNumber(int num);
-		int		shorttestSpan(void);
+		int		shortestSpan(void);
 		int		longestSpan(void);		
 };
 #endif
