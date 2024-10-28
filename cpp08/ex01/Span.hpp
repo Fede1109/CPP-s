@@ -4,6 +4,7 @@
 #include <numeric>
 #include <iterator>
 #include <vector>
+#include <algorithm>
 class Span
 {
 	private:
