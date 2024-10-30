@@ -25,14 +25,14 @@ Span &Span::operator=(const Span &s)
 void	Span::addNumber(int num)
 {
 	if (this->_vec.size() >= this->_n)
-		throw("List is full");
+		throw(ListFull());
 	this->_vec.push_back(num);
 }
 
 int Span::shortestSpan(void)
 {
 	if (this->_vec.size() < 2)
-		throw("Not enough values");
+		throw(EmptyVector());
 	std::vector<int> aux = this->_vec;
     std::sort(aux.begin(), aux.end());
 	std::vector<int> diffs(aux.size());
@@ -43,8 +43,17 @@ int Span::shortestSpan(void)
 int Span::longestSpan(void)
 {
 	if (this->_vec.size() < 2)
-		throw("Not enough values");
+		throw(EmptyVector());
 	int min = *std::min_element(this->_vec.begin(), this->_vec.end());
 	int max = *std::max_element(this->_vec.begin(), this->_vec.end());
 	return (max - min);
+}
+const char *Span::EmptyVector::what(void) const throw()
+{
+	return ("Not enough values");
+}
+
+const char *Span::ListFull::what(void) const throw()
+{
+	return("List is full");
 }
