@@ -1,6 +1,5 @@
 #include "Span.hpp"
 
-// TODO: Funcion para rellenar con muchos numeros random
 int main()
 {
 	Span sp2 = Span(1);
@@ -10,7 +9,7 @@ int main()
 	sp.addNumber(17);
 	sp.addNumber(9);
 	sp.addNumber(11);
-	
+
 	try
 	{
 		std::cout << sp2.shortestSpan() << std::endl;
@@ -31,5 +30,17 @@ int main()
 
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
+
+	int len = 10000;
+
+	Span sp3 = Span(len);
+	srand(time(NULL));
+	std::cout << "BIG STACK" << std::endl;
+	for (int i = 0; i < len; i++)
+	{
+		int rnd = rand() % 50000;
+		sp3.addNumber(rnd);
+	}
+	sp3.print_stack();
 	return 0;
 }

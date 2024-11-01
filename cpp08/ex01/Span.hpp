@@ -20,6 +20,8 @@ public:
 	void addNumber(int num);
 	int shortestSpan(void);
 	int longestSpan(void);
+	void addNumbers(std::vector<int> vector);
+	void print_stack(void);
 	class ListFull : public std::exception
 	{
 	public:
