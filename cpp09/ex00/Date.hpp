@@ -13,6 +13,7 @@ class Date
 	public:
 		Date(std::string str);
 		Date &operator=(Date &d);
+		bool getValid(void);
 		Date(Date &d);
 		~Date(void);
 
