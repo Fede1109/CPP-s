@@ -1,11 +1,13 @@
 #include "Date.hpp"
 
- static std::string trim(const std::string& str) {
-        size_t start = str.find_first_not_of(" \t\n\r\f\v");
-        if (start == std::string::npos) return "";
-        size_t end = str.find_last_not_of(" \t\n\r\f\v");
-        return str.substr(start, end - start + 1);
-    }
+static std::string trim(const std::string &str)
+{
+	size_t start = str.find_first_not_of(" \t\n\r\f\v");
+	if (start == std::string::npos)
+		return "";
+	size_t end = str.find_last_not_of(" \t\n\r\f\v");
+	return str.substr(start, end - start + 1);
+}
 static bool checkDigit(const std::string &str, int n)
 {
 	for (int i = 0; i < n; i++)
@@ -86,7 +88,7 @@ Date::Date(std::string dstr) : _year(0), _month(0), _day(0), _isValid(false)
 	_isValid = isValidDate(_year, _month, _day);
 }
 
-bool	Date::getValid(void)
+bool Date::getValid(void)
 {
 	return _isValid;
 }

@@ -9,16 +9,16 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	(void) argv;
-	Date date("	2024-02-a");
-	if (date.getValid())
-	{
-		std::cout << "La fecha es válida." << std::endl;
-	}
-	else
-	{
-		std::cout << "La fecha no es válida." << std::endl;
-	}
-
-	return 0;
+	// Date date("	2024-02-a");
+	// if (date.getValid())
+	// {
+	// 	std::cout << "La fecha es válida." << std::endl;
+	// }
+	// else
+	// {
+	// 	std::cout << "La fecha no es válida." << std::endl;
+	// }
+	Btc *data = new Btc();
+	data->print_data();
 	return (0);
 }
