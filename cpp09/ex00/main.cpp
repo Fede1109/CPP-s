@@ -3,22 +3,20 @@
 
 int main(int argc, char **argv)
 {
-	if (argc != 2)
+	if (argc != 2 && argc != 3)
 	{
-		std::cerr << "Usage -> ./btc <file>" << std::endl;
+		std::cerr << "Usage -> ./btc <file> <database(optional)>" << std::endl;
 		return (1);
 	}
-	(void) argv;
-	// Date date("	2024-02-a");
-	// if (date.getValid())
-	// {
-	// 	std::cout << "La fecha es válida." << std::endl;
-	// }
-	// else
-	// {
-	// 	std::cout << "La fecha no es válida." << std::endl;
-	// }
-	Btc *data = new Btc();
-	data->showWealth(argv[1]);
+	if (argc == 2)
+	{
+		Btc *data = new Btc();
+		data->showWealth(argv[1]);
+	}
+	if (argc == 3)
+	{
+		Btc *data = new Btc(argv[2]);
+		data->showWealth(argv[1]);
+	}
 	return (0);
 }

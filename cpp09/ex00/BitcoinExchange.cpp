@@ -112,6 +112,7 @@ Btc &Btc::operator=(Btc &b)
 			this->_data.insert(std::pair<Date *, double>(new Date(*it->first), it->second));
 		}
 	}
+	return *this;
 }
 
 double Btc::searchDateValue(const Date &date) const
