@@ -12,11 +12,14 @@ int main(int argc, char **argv)
 	{
 		Btc *data = new Btc();
 		data->showWealth(argv[1]);
+		delete data;
 	}
 	if (argc == 3)
 	{
 		Btc *data = new Btc(argv[2]);
 		data->showWealth(argv[1]);
+		delete data;
 	}
+
 	return (0);
 }
