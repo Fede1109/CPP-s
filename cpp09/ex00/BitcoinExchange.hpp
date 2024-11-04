@@ -16,7 +16,10 @@ public:
 	Btc(Btc &btc);
 	~Btc(void);
 	Btc &operator=(Btc &btc);
-	void	print_data();
+	void	printData(void);
+	void	showWealth(std::string inputFile);
+	double searchDateValue(const Date& date) const;
+
 };
 class FileError : public std::exception
 {

@@ -20,5 +20,17 @@ public:
 	int getYear() const { return _year; }
 	int getMonth() const { return _month; }
 	int getDay() const { return _day; }
+	bool operator<(const Date& other) const
+	{
+		if (_year < other._year) return true;
+		if (_year > other._year) return false;
+		if (_month < other._month) return true;
+		if (_month > other._month) return false;
+		return _day < other._day;
+	}
+	bool operator>(const Date &other) const
+	{
+		return other < *this;
+	}
 };
 #endif

@@ -19,6 +19,6 @@ int main(int argc, char **argv)
 	// 	std::cout << "La fecha no es válida." << std::endl;
 	// }
 	Btc *data = new Btc();
-	data->print_data();
+	data->showWealth(argv[1]);
 	return (0);
 }
