@@ -55,7 +55,7 @@ Btc::Btc(std::string dbfile)
 	std::string values;
 	size_t pos;
 	double num;
-	data.open(dbfile);
+	data.open(dbfile.c_str());
 	if (!data)
 		throw FileError();
 	for (std::string line; std::getline(data, line);)
@@ -140,7 +140,7 @@ void Btc::showWealth(std::string inputFile)
 	double num;
 	int first = 0;
 
-	data.open(inputFile);
+	data.open(inputFile.c_str());
 	if (!data)
 		throw FileError();
 
