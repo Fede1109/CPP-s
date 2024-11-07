@@ -1,6 +1,7 @@
 #ifndef DATE_HPP
 #define DATE_HPP
 #include <iostream>
+#include <cstdlib>
 
 class Date
 {
