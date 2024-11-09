@@ -9,17 +9,16 @@
 class Pmerge
 {
 	private:
-		std::vector<int> _vec;
-		std::list<int> _lst;
+
 		Pmerge(void);
 		Pmerge(Pmerge const &pm);
 		Pmerge &operator=(Pmerge const &pm);
 	public:
 		~Pmerge(void);
-		std::list<int> sortList(void);
-		std::vector<int> sortVector(void);
-		static void	printList(std::list<int>);
-		static void	printVector(std::vector<int>);
+		static std::list<int> sortList(std::list<int> lst);
+		static std::vector<int> sortVector(std::vector <int> vect);
+		static void	printList(std::list<int>& lst);
+		static void	printVector(std::vector<int>& vect);
 
 };
 #endif
