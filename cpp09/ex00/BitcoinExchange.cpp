@@ -138,11 +138,12 @@ void Btc::showWealth(std::string inputFile)
 	std::string values;
 	size_t pos;
 	double num;
-	int first = 0;
 
 	data.open(inputFile.c_str());
 	if (!data)
 		throw FileError();
+	std::string header;
+	std::getline(data, header);
 
 	for (std::string line; std::getline(data, line);)
 	{
@@ -167,16 +168,14 @@ void Btc::showWealth(std::string inputFile)
 		Date date(values);
 		if (!date.getValid())
 		{
-			if (first > 0)
-				std::cout << "Error: invalid date => " << values << std::endl;
-			first++;
+			std::cout << "Error: invalid date => " << values << std::endl;
 			continue;
 		}
-
+		std::string subs = line.substr(0, pos);
 		str = trim(line.substr(pos + 1));
 		if (str.empty())
 		{
-			std::cout << "Error: empty or invalid value => " << line << std::endl;
+			std::cout << "Error: empty or invalid value => '" << subs << "'" << std::endl;
 			continue;
 		}
 
@@ -192,7 +191,6 @@ void Btc::showWealth(std::string inputFile)
 			continue;
 		}
 		std::cout << values << " => " << num << " = " << num * this->searchDateValue(date) << std::endl;
-		first++;
 	}
 	data.close();
 }
