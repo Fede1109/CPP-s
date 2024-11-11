@@ -5,7 +5,7 @@
 #include <list>
 #include <vector>
 #include <cctype> 
-
+#include <climits>
 class Pmerge
 {
 	private:

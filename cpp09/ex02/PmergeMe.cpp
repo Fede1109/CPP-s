@@ -2,6 +2,13 @@
 
 Pmerge::~Pmerge(void) {}
 
+Pmerge &Pmerge::operator=(Pmerge const &pm)
+{
+    (void) pm;
+    return *this;
+}
+
+
 void Pmerge::printVector(std::vector<int>& vec)
 {
 	for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
