@@ -34,7 +34,6 @@ RPN::RPN(std::string args)
 
 RPN::~RPN() {}
 
-// TODO: esto es MUY refactorizable
 void RPN::operation(char o)
 {
 	long res;
