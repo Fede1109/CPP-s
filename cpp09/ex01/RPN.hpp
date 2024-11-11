@@ -15,10 +15,6 @@ public:
 	RPN(std::string args);
 	void operation(char o);
 	~RPN(void);
-	// void add(void);
-	// void sub(void);
-	// void mul(void);
-	// void div(void);
 	class Error : public std::exception
 	{
 	public:
