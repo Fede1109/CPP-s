@@ -175,7 +175,7 @@ void Btc::showWealth(std::string inputFile)
 		str = trim(line.substr(pos + 1));
 		if (str.empty())
 		{
-			std::cout << "Error: empty or invalid value => " << subs " << std::endl;
+			std::cout << "Error: empty or invalid value => " << subs  << std::endl;
 			continue;
 		}
 
