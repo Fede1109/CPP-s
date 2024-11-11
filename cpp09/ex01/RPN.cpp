@@ -5,10 +5,12 @@ RPN::RPN(std::string args)
 	bool flag = false;
 	if (args.empty() || args.length() == 3)
 		throw Error();
+
 	for (size_t i = 0; i < args.length(); i++)
 	{
-		if (!isdigit(args[i]))
+		if (!isdigit(args[i])) {
 			flag = false;
+		}
 		if (isdigit(args[i]) && !flag)
 		{
 			flag = true;
@@ -18,17 +20,29 @@ RPN::RPN(std::string args)
 			else
 				this->_stack.push(num);
 		}
-		else if (args[i] ==  '+' || args[i] ==  '*' || args[i] ==  '/')
+		else if (args[i] == '+' || args[i] == '*' || args[i] == '/')
+		{
+			if (this->_stack.size() < 2)
+				throw Error();
 			operation(args[i]);
+		}
 		else if (args[i] == '-')
 		{
 			if ((i < args.length() - 1) && isdigit(args[i + 1]))
 				continue;
+
+			// Es operador '-'
+			if (this->_stack.size() < 2)
+				throw Error();
 			operation('-');
 		}
 		else if (!isspace(args[i]) || (isdigit(args[i]) && flag))
+		{
 			throw Error();
+		}
 	}
+	if (this->_stack.size() != 1)
+		throw Error();
 	std::cout << this->_stack.top() << std::endl;
 }
 
@@ -60,10 +74,13 @@ void RPN::operation(char o)
 		res = num2 / num1;
 		break;
 	default:
-		break;
+		throw Error();
 	}
+	if ((res > INT_MAX) || (res < INT_MIN))
+		throw Error();
 	this->_stack.push(res);
 }
+
 // void RPN::add(void)
 // {
 // 	long res;
