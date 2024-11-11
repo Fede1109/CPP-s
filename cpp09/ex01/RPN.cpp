@@ -1,10 +1,9 @@
 #include "RPN.hpp"
 
-
 RPN::RPN(std::string args)
 {
 	bool flag = false;
-	if (args.empty())
+	if (args.empty() || args.length() == 3)
 		throw Error();
 	for (size_t i = 0; i < args.length(); i++)
 	{
@@ -13,23 +12,19 @@ RPN::RPN(std::string args)
 		if (isdigit(args[i]) && !flag)
 		{
 			flag = true;
-            int num = args[i] - '0';
-            if (i > 0 && args[i - 1] == '-')
-                this->_stack.push(-num);
-            else
-                this->_stack.push(num);
+			int num = args[i] - '0';
+			if (i > 0 && args[i - 1] == '-')
+				this->_stack.push(-num);
+			else
+				this->_stack.push(num);
 		}
-		else if(args[i] == '*')
-			this->mul();
-		else if(args[i] == '+')
-			this->add();
-		else if(args[i] == '/')
-			this->div();
-		else if(args[i] == '-')
+		else if (args[i] ==  '+' || args[i] ==  '*' || args[i] ==  '/')
+			operation(args[i]);
+		else if (args[i] == '-')
 		{
-			if ((i < args.length() - 1) && isdigit(i + 1))
+			if ((i < args.length() - 1) && isdigit(args[i + 1]))
 				continue;
-			this->sub();
+			operation('-');
 		}
 		else if (!isspace(args[i]) || (isdigit(args[i]) && flag))
 			throw Error();
@@ -37,63 +32,86 @@ RPN::RPN(std::string args)
 	std::cout << this->_stack.top() << std::endl;
 }
 
-RPN::~RPN(){}
+RPN::~RPN() {}
 
-//TODO: esto es MUY refactorizable
-void RPN::add(void)
+// TODO: esto es MUY refactorizable
+void RPN::operation(char o)
 {
-	long	res;
-
+	long res;
 	if (this->_stack.size() < 2)
 		throw Error();
 	int num1 = this->_stack.top();
 	_stack.pop();
-	int mun2 = this->_stack.top();
+	int num2 = this->_stack.top();
 	_stack.pop();
-	res = mun2 + num1;
+	switch (o)
+	{
+	case '+':
+		res = num2 + num1;
+		break;
+	case '-':
+		res = num2 - num1;
+		break;
+	case '*':
+		res = num2 * num1;
+		break;
+	case '/':
+		if (num1 == 0)
+			throw Error();
+		res = num2 / num1;
+		break;
+	default:
+		break;
+	}
 	this->_stack.push(res);
 }
+// void RPN::add(void)
+// {
+// 	long res;
 
-void RPN::sub(void)
-{
-	long	res;
+// 	res = mun2 + num1;
+// 	this->_stack.push(res);
+// }
 
-	if (this->_stack.size() < 2)
-		throw Error();
-	int num1 = this->_stack.top();
-	_stack.pop();
-	int mun2 = this->_stack.top();
-	_stack.pop();
-	res = mun2 - num1;
-	this->_stack.push(res);
-}
+// void RPN::sub(void)
+// {
+// 	long res;
 
-void RPN::div(void)
-{
-	long	res;
+// 	if (this->_stack.size() < 2)
+// 		throw Error();
+// 	int num1 = this->_stack.top();
+// 	_stack.pop();
+// 	int mun2 = this->_stack.top();
+// 	_stack.pop();
+// 	res = mun2 - num1;
+// 	this->_stack.push(res);
+// }
 
-	if (this->_stack.size() < 2)
-		throw Error();
-	int num1 = this->_stack.top();
-	_stack.pop();
-	int mun2 = this->_stack.top();
-	_stack.pop();
-	if (num1 == 0)
-		throw Error();
-	res = mun2 / num1;
-	this->_stack.push(res);
-}
+// void RPN::div(void)
+// {
+// 	long res;
 
-void RPN::mul(void)
-{
-	long	res;
+// 	if (this->_stack.size() < 2)
+// 		throw Error();
+// 	int num1 = this->_stack.top();
+// 	_stack.pop();
+// 	int mun2 = this->_stack.top();
+// 	_stack.pop();
 
-	if (this->_stack.size() < 2)
-		throw Error();
-	int num1 = this->_stack.top();
-	_stack.pop();
-	int mun2 = this->_stack.top();
-	_stack.pop();
-	res = mun2 * num1;
-	this->_stack.push(res);
-}
+// 	res = mun2 / num1;
+// 	this->_stack.push(res);
+// }
+
+// void RPN::mul(void)
+// {
+// 	long res;
+
+// 	if (this->_stack.size() < 2)
+// 		throw Error();
+// 	int num1 = this->_stack.top();
+// 	_stack.pop();
+// 	int mun2 = this->_stack.top();
+// 	_stack.pop();
+// 	res = mun2 * num1;
+// 	this->_stack.push(res);
+// }

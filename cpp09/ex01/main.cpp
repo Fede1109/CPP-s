@@ -1,7 +1,5 @@
 #include "RPN.hpp"
 
-
-//TODO: refactorizar funciones de operadores y hacer mas pruebas
 int main(int argc, char **argv)
 {
 	if (argc != 2)
@@ -13,9 +11,9 @@ int main(int argc, char **argv)
 	{
 		RPN a(argv[1]);
 	}
-	catch (char const *exc)
+	catch (const RPN::Error& exc)
 	{
-		std::cout << exc << std::endl;
+		std::cout << exc.what() << std::endl;
 	}
 	return (0);
 }

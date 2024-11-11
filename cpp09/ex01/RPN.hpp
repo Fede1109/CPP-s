@@ -8,16 +8,17 @@ class RPN
 private:
 	std::stack<long> _stack;
 	RPN(void);
+	RPN &operator=(RPN const &rpn);
+	RPN(RPN const &rpn);
 
 public:
 	RPN(std::string args);
-	RPN &operator=(RPN const &rpn);
-	RPN(RPN const &rpn);
+	void operation(char o);
 	~RPN(void);
-	void add(void);
-	void sub(void);
-	void mul(void);
-	void div(void);
+	// void add(void);
+	// void sub(void);
+	// void mul(void);
+	// void div(void);
 	class Error : public std::exception
 	{
 	public:
