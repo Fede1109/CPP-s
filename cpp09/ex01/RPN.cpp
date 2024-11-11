@@ -44,8 +44,6 @@ RPN::RPN(std::string args)
 	std::cout << this->_stack.top() << std::endl;
 }
 
-RPN::~RPN() {}
-
 void RPN::operation(char o)
 {
 	long res;
