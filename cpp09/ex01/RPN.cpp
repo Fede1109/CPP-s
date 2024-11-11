@@ -30,8 +30,6 @@ RPN::RPN(std::string args)
 		{
 			if ((i < args.length() - 1) && isdigit(args[i + 1]))
 				continue;
-
-			// Es operador '-'
 			if (this->_stack.size() < 2)
 				throw Error();
 			operation('-');
