@@ -55,7 +55,7 @@ bool checkSortedVector(std::vector<int> vec)
 	}
 	return (true);
 }
-int binaryLst(std::list<int>& lst, int val)
+int findInsertIndexLst(std::list<int>& lst, int val)
 {
     int min = 0, max = lst.size() - 1;
     std::list<int>::iterator it;
@@ -76,7 +76,7 @@ int binaryLst(std::list<int>& lst, int val)
     return min;
 }
 
-int binaryVector(std::vector<int>& vec, int val)
+int findInsertIndexVector(std::vector<int>& vec, int val)
 {
     int min = 0, max = vec.size() - 1;
     std::vector<int>::iterator it;
@@ -135,7 +135,7 @@ std::list<int> Pmerge::sortList(std::list<int> lst)
 
     for (std::list<int>::iterator it = smalls.begin(); it != smalls.end(); ++it)
     {
-        int index = binaryLst(aux, *it);
+        int index = findInsertIndexLst(aux, *it);
         std::list<int>::iterator it2 = aux.begin();
         std::advance(it2, index);
         aux.insert(it2, *it);
@@ -182,11 +182,10 @@ std::vector<int> Pmerge::sortVector(std::vector<int> vec)
 
     for (std::vector<int>::iterator it = smalls.begin(); it != smalls.end(); ++it)
     {
-        int index = binaryVector(aux, *it);
+        int index = findInsertIndexVector(aux, *it);
         std::vector<int>::iterator it2 = aux.begin();
         std::advance(it2, index);
         aux.insert(it2, *it);
     }
-
     return aux;
 }
