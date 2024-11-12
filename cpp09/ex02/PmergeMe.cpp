@@ -4,68 +4,68 @@ Pmerge::~Pmerge(void) {}
 
 Pmerge &Pmerge::operator=(Pmerge const &pm)
 {
-    (void) pm;
+    (void)pm;
     return *this;
 }
 
-
-void Pmerge::printVector(std::vector<int>& vec)
+void Pmerge::printVector(std::vector<int> &vec)
 {
-	for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
 }
 
-void Pmerge::printList(std::list<int>& lst)
+void Pmerge::printList(std::list<int> &lst)
 {
-	for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
+    for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
 }
 
-bool checkSortedLst(std::list<int> lst)
+bool checkSortedLst(std::list<int> &lst)
 {
-	int aux;
+    int aux;
 
-	for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
-	{
-		aux = *it;
-		it++;
-		if (it == lst.end())
-			break;
-		if (aux > *it)
-			return (false);
-		it--;
-	}
-	return (true);
+    for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
+    {
+        aux = *it;
+        it++;
+        if (it == lst.end())
+            break;
+        if (aux > *it)
+            return (false);
+        it--;
+    }
+    return (true);
 }
-bool checkSortedVector(std::vector<int> vec)
+
+bool checkSortedVector(std::vector<int> &vec)
 {
-	int aux;
+    int aux;
 
-	for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
-	{
-		aux = *it;
-		it++;
-		if (it == vec.end())
-			break;
-		if (aux > *it)
-			return (false);
-		it--;
-	}
-	return (true);
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+    {
+        aux = *it;
+        it++;
+        if (it == vec.end())
+            break;
+        if (aux > *it)
+            return (false);
+        it--;
+    }
+    return (true);
 }
-int findInsertIndexLst(std::list<int>& lst, int val)
+int findInsertIndexLst(std::list<int> &lst, int val)
 {
     int min = 0, max = lst.size() - 1;
     std::list<int>::iterator it;
-    
-    while (min <= max) 
+
+    while (min <= max)
     {
         int avg = (min + max) / 2;
         it = lst.begin();
         std::advance(it, avg);
-        
+
         if (*it == val)
             return avg;
         else if (*it < val)
@@ -76,20 +76,15 @@ int findInsertIndexLst(std::list<int>& lst, int val)
     return min;
 }
 
-int findInsertIndexVector(std::vector<int>& vec, int val)
+int findInsertIndexVector(std::vector<int> &vec, int val)
 {
     int min = 0, max = vec.size() - 1;
-    std::vector<int>::iterator it;
-    
-    while (min <= max) 
+    while (min <= max)
     {
         int avg = (min + max) / 2;
-        it = vec.begin();
-        std::advance(it, avg);
-        
-        if (*it == val)
+        if (vec[avg] == val)
             return avg;
-        else if (*it < val)
+        else if (vec[avg] < val)
             min = avg + 1;
         else
             max = avg - 1;
@@ -97,12 +92,12 @@ int findInsertIndexVector(std::vector<int>& vec, int val)
     return min;
 }
 
-std::list<int> Pmerge::sortList(std::list<int> lst)
+std::list<int> Pmerge::sortList(std::list<int> &lst)
 {
     std::list<int> order, smalls, aux;
     if (checkSortedLst(lst))
         return lst;
-   
+
     std::list<int>::iterator it = lst.begin();
     while (it != lst.end())
     {
@@ -144,13 +139,13 @@ std::list<int> Pmerge::sortList(std::list<int> lst)
     return aux;
 }
 
-std::vector<int> Pmerge::sortVector(std::vector<int> vec)
+std::vector<int> Pmerge::sortVector(std::vector<int> &vec)
 {
     std::vector<int> order, smalls, aux;
 
-	if (checkSortedVector(vec))
-		return (vec);
-	    std::vector<int>::iterator it = vec.begin();
+    if (checkSortedVector(vec))
+        return (vec);
+    std::vector<int>::iterator it = vec.begin();
     while (it != vec.end())
     {
         int first = *it;
