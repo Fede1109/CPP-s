@@ -21,15 +21,14 @@ std::vector<int> ft_jacobsthal(int size)
     int a = 1, b = 3;
     jacob.push_back(a);
     jacob.push_back(b);
-    int i = 10;
-    while (i)
+    while (1)
     {
         long next = 2 * a + b;
-        if (next > size)
+        if (next > size / 2)
             break;
         a = b;
         b = next;
-        i--;
+        jacob.push_back(next);
     }
     return jacob;
 }
@@ -195,14 +194,14 @@ bool compareBySecond(const std::pair<unsigned int, unsigned int> &a,
 
 std::vector<int> Pmerge::sortVector(std::vector<int> &vec)
 {
-    std::vector<int> aux, jacob;
+    std::vector<int> res, jacob, aux;
 
     if (checkSortedVector(vec))
         return vec;
 
     jacob = ft_jacobsthal(vec.size());
     std::vector<std::pair<unsigned int, unsigned int> > pares = createPairs(vec);
-    for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
+    for (std::vector<std::pair<unsigned int, unsigned int> > ::iterator it = pares.begin(); it != pares.end(); ++it)
     {
         std::cout << "[" << it->first << "," << it->second << "]" << std::endl;
     }
@@ -215,12 +214,41 @@ std::vector<int> Pmerge::sortVector(std::vector<int> &vec)
     }
     std::cout << "---------------" << std::endl;
     //* Primer paso para guardar todo en un vector
-    //TODO: con la sucesion de jacobsthal, pasar los menosres a aux donde correspondan
+    // TODO: con la sucesion de jacobsthal, pasar los menosres a aux donde correspondan
+
     for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
     {
-        aux.push_back(it->second);
+        res.push_back(it->second);
     }
-    // printVector(aux);
+    for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
+    {
+        aux.push_back(it->first);
+    }
+    // printVector(jacob);
+    std::cout << "----------" << std::endl;
+    for (size_t i = 0; i < aux.size(); ++i)
+    {
+      for(size_t j = 0; j < jacob.size(); j++)
+      {
+        if (j == 0 && i == 0)
+        {
+            res.insert(res.begin(), aux[i]);
+        }
+        // else if (((int)(i + 1) == jacob[j]))
+        // {
+        //     //TODO:: REllenar desde ese indice hasta el anterior de jacob
+        //     std::cout << i + 1 << " = " << jacob[j] <<  " --> " << aux[i] <<std::endl;
+        // }
+        // else if (j == (jacob.size() - 1))
+        // {
+        //     //TODO: RELLLENAR desde ese indice hasta el final
+        // }
+      }   
+    }
+
+    std::cout << jacob[jacob.size() -1] <<std::endl;
+    std::cout << "----------" << std::endl;
+    printVector(res);
     // std::cout << "---------------" << std::endl;
     return aux;
 }
