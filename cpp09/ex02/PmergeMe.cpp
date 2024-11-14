@@ -15,6 +15,25 @@ void Pmerge::printVector(std::vector<int> &vec)
     std::cout << std::endl;
 }
 
+std::vector<int> ft_jacobsthal(int size)
+{
+    std::vector<int> jacob;
+    int a = 1, b = 3;
+    jacob.push_back(a);
+    jacob.push_back(b);
+    int i = 10;
+    while (i)
+    {
+        long next = 2 * a + b;
+        if (next > size)
+            break;
+        a = b;
+        b = next;
+        i--;
+    }
+    return jacob;
+}
+
 void Pmerge::printList(std::list<int> &lst)
 {
     for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
@@ -138,49 +157,70 @@ std::list<int> Pmerge::sortList(std::list<int> &lst)
 
     return aux;
 }
-
-std::vector<int> Pmerge::sortVector(std::vector<int> &vec)
+std::vector<std::pair<unsigned int, unsigned int> > createPairs(const std::vector<int> &vec)
 {
-    std::vector<int> order, smalls, aux;
+    std::vector<std::pair<unsigned int, unsigned int> > pares;
+    std::vector<int>::const_iterator it = vec.begin();
 
-    if (checkSortedVector(vec))
-        return (vec);
-    std::vector<int>::iterator it = vec.begin();
     while (it != vec.end())
     {
         int first = *it;
         ++it;
+
         if (it == vec.end())
         {
-            smalls.push_back(first);
+            pares.push_back(std::make_pair(first, NULL));
         }
         else
         {
             int second = *it;
             if (first < second)
             {
-                smalls.push_back(first);
-                order.push_back(second);
+                pares.push_back(std::make_pair(first, second));
             }
             else
             {
-                order.push_back(first);
-                smalls.push_back(second);
+                pares.push_back(std::make_pair(second, first));
             }
             ++it;
         }
     }
-    if (order.size() > 1)
-        aux = sortVector(order);
-    else
-        aux = order;
+    return pares;
+}
+bool compareBySecond(const std::pair<unsigned int, unsigned int> &a,
+                     const std::pair<unsigned int, unsigned int> &b)
+{
+    return a.second < b.second;
+}
 
-    for (std::vector<int>::iterator it = smalls.begin(); it != smalls.end(); ++it)
+std::vector<int> Pmerge::sortVector(std::vector<int> &vec)
+{
+    std::vector<int> aux, jacob;
+
+    if (checkSortedVector(vec))
+        return vec;
+
+    jacob = ft_jacobsthal(vec.size());
+    std::vector<std::pair<unsigned int, unsigned int> > pares = createPairs(vec);
+    for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
     {
-        int index = findInsertIndexVector(aux, *it);
-        std::vector<int>::iterator it2 = aux.begin();
-        std::advance(it2, index);
-        aux.insert(it2, *it);
+        std::cout << "[" << it->first << "," << it->second << "]" << std::endl;
     }
+    std::cout << "---------------" << std::endl;
+    std::sort(pares.begin(), pares.end(), compareBySecond);
+
+    for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
+    {
+        std::cout << "[" << it->first << "," << it->second << "]" << std::endl;
+    }
+    std::cout << "---------------" << std::endl;
+    //* Primer paso para guardar todo en un vector
+    //TODO: con la sucesion de jacobsthal, pasar los menosres a aux donde correspondan
+    for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
+    {
+        aux.push_back(it->second);
+    }
+    // printVector(aux);
+    // std::cout << "---------------" << std::endl;
     return aux;
 }
