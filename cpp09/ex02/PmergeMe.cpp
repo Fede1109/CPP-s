@@ -33,22 +33,40 @@ std::vector<int> ft_jacobsthal(int size)
     return jacob;
 }
 
-void Pmerge::printList(std::list<int> &lst)
+std::deque<int> ft_jacobsthalDeq(int size)
 {
-    for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
+    std::deque<int> jacob;
+    int a = 1, b = 3;
+    jacob.push_back(a);
+    jacob.push_back(b);
+    while (1)
+    {
+        long next = 2 * a + b;
+        if (next > size / 2)
+            break;
+        a = b;
+        b = next;
+        jacob.push_back(next);
+    }
+    return jacob;
+}
+
+void Pmerge::printDeque(std::deque<int> &deq)
+{
+    for (std::deque<int>::iterator it = deq.begin(); it != deq.end(); it++)
         std::cout << *it << " ";
     std::cout << std::endl;
 }
 
-bool checkSortedLst(std::list<int> &lst)
+bool checkSortedDeq(std::deque<int> &deq)
 {
     int aux;
 
-    for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
+    for (std::deque<int>::iterator it = deq.begin(); it != deq.end(); it++)
     {
         aux = *it;
         it++;
-        if (it == lst.end())
+        if (it == deq.end())
             break;
         if (aux > *it)
             return (false);
@@ -73,10 +91,15 @@ bool checkSortedVector(std::vector<int> &vec)
     }
     return (true);
 }
-int findInsertIndexLst(std::list<int> &lst, int val)
+bool compareBySecond(const std::pair<unsigned int, unsigned int> &a,
+                     const std::pair<unsigned int, unsigned int> &b)
+{
+    return a.second < b.second;
+}
+int findInsertIndexLst(std::deque<int> &lst, int val)
 {
     int min = 0, max = lst.size() - 1;
-    std::list<int>::iterator it;
+    std::deque<int>::iterator it;
 
     while (min <= max)
     {
@@ -109,66 +132,17 @@ int findInsertIndexVector(std::vector<int> &vec, int val)
     }
     return min;
 }
-
-std::list<int> Pmerge::sortList(std::list<int> &lst)
+std::deque<std::pair<unsigned int, unsigned int> > createPairsDeque(const std::deque<int> &deque)
 {
-    std::list<int> order, smalls, aux;
-    if (checkSortedLst(lst))
-        return lst;
-
-    std::list<int>::iterator it = lst.begin();
-    while (it != lst.end())
+    std::deque<std::pair<unsigned int, unsigned int> > pares;
+    std::deque<int>::const_iterator it = deque.begin();
+    while (it != deque.end())
     {
         int first = *it;
         ++it;
-        if (it == lst.end())
+        if (it == deque.end())
         {
-            smalls.push_back(first);
-        }
-        else
-        {
-            int second = *it;
-            if (first < second)
-            {
-                smalls.push_back(first);
-                order.push_back(second);
-            }
-            else
-            {
-                order.push_back(first);
-                smalls.push_back(second);
-            }
-            ++it;
-        }
-    }
-    if (order.size() > 1)
-        aux = sortList(order);
-    else
-        aux = order;
-
-    for (std::list<int>::iterator it = smalls.begin(); it != smalls.end(); ++it)
-    {
-        int index = findInsertIndexLst(aux, *it);
-        std::list<int>::iterator it2 = aux.begin();
-        std::advance(it2, index);
-        aux.insert(it2, *it);
-    }
-
-    return aux;
-}
-std::vector<std::pair<unsigned int, unsigned int> > createPairs(const std::vector<int> &vec)
-{
-    std::vector<std::pair<unsigned int, unsigned int> > pares;
-    std::vector<int>::const_iterator it = vec.begin();
-
-    while (it != vec.end())
-    {
-        int first = *it;
-        ++it;
-
-        if (it == vec.end())
-        {
-            pares.push_back(std::make_pair(first, NULL));
+            break;
         }
         else
         {
@@ -186,11 +160,87 @@ std::vector<std::pair<unsigned int, unsigned int> > createPairs(const std::vecto
     }
     return pares;
 }
-bool compareBySecond(const std::pair<unsigned int, unsigned int> &a,
-                     const std::pair<unsigned int, unsigned int> &b)
+
+std::deque<int> Pmerge::sortdeque(std::deque<int> &deq)
 {
-    return a.second < b.second;
+    std::deque<int> res, jacob, aux;
+    if (checkSortedDeq(deq))
+        return deq;
+
+    jacob = ft_jacobsthalDeq(deq.size());
+    std::deque<std::pair<unsigned int, unsigned int> > pares = createPairsDeque(deq);
+    std::sort(pares.begin(), pares.end(), compareBySecond);
+    for (std::deque<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
+    {
+        res.push_back(it->second);
+        aux.push_back(it->first);
+    }
+    
+    for (size_t i = 0; i < jacob.size(); ++i)
+    {
+        int index = jacob[i] - 1;
+        if (index < (int)aux.size())
+        {    
+            std::deque<int>::iterator pos = std::lower_bound(res.begin(), res.end(), aux[index]);
+            res.insert(pos, aux[index]);
+        }
+    }
+
+    for (int i = aux.size() - 1; i >= 0; --i)
+    {
+        bool alreadyInserted = false;
+        for (size_t j = 0; j < jacob.size(); ++j)
+        {
+            if (jacob[j] - 1 == i)
+            {
+                alreadyInserted = true;
+                break;
+            }
+        }
+        if (!alreadyInserted)
+        {
+            std::deque<int>::iterator pos = std::lower_bound(res.begin(), res.end(), aux[i]);
+            res.insert(pos, aux[i]);
+        }
+    }
+
+    if (deq.size() % 2 != 0)
+    {
+        std::deque<int>::iterator pos = std::lower_bound(res.begin(), res.end(), deq.back());
+        res.insert(pos, deq.back());
+    }
+
+    return res;
 }
+std::vector<std::pair<unsigned int, unsigned int> > createPairs(const std::vector<int> &vec)
+{
+    std::vector<std::pair<unsigned int, unsigned int> > pares;
+    std::vector<int>::const_iterator it = vec.begin();
+    while (it != vec.end())
+    {
+        int first = *it;
+        ++it;
+        if (it == vec.end())
+        {
+            break;
+        }
+        else
+        {
+            int second = *it;
+            if (first < second)
+            {
+                pares.push_back(std::make_pair(first, second));
+            }
+            else
+            {
+                pares.push_back(std::make_pair(second, first));
+            }
+            ++it;
+        }
+    }
+    return pares;
+}
+
 
 std::vector<int> Pmerge::sortVector(std::vector<int> &vec)
 {
@@ -201,54 +251,60 @@ std::vector<int> Pmerge::sortVector(std::vector<int> &vec)
 
     jacob = ft_jacobsthal(vec.size());
     std::vector<std::pair<unsigned int, unsigned int> > pares = createPairs(vec);
-    for (std::vector<std::pair<unsigned int, unsigned int> > ::iterator it = pares.begin(); it != pares.end(); ++it)
-    {
-        std::cout << "[" << it->first << "," << it->second << "]" << std::endl;
-    }
-    std::cout << "---------------" << std::endl;
+    // for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
+    // {
+    //     std::cout << "[" << it->first << "," << it->second << "]" << std::endl;
+    // }
+    // std::cout << "---------------" << std::endl;
     std::sort(pares.begin(), pares.end(), compareBySecond);
 
-    for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
-    {
-        std::cout << "[" << it->first << "," << it->second << "]" << std::endl;
-    }
-    std::cout << "---------------" << std::endl;
-    //* Primer paso para guardar todo en un vector
-    // TODO: con la sucesion de jacobsthal, pasar los menosres a aux donde correspondan
+    // for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
+    // {
+    //     std::cout << "[" << it->first << "," << it->second << "]" << std::endl;
+    // }
+    // std::cout << "---------------" << std::endl;
 
     for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
     {
         res.push_back(it->second);
-    }
-    for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
-    {
         aux.push_back(it->first);
     }
-    // printVector(jacob);
-    std::cout << "----------" << std::endl;
-    for (size_t i = 0; i < aux.size(); ++i)
-    {
-      for(size_t j = 0; j < jacob.size(); j++)
-      {
-        if (j == 0 && i == 0)
-        {
-            res.insert(res.begin(), aux[i]);
-        }
-        // else if (((int)(i + 1) == jacob[j]))
-        // {
-        //     //TODO:: REllenar desde ese indice hasta el anterior de jacob
-        //     std::cout << i + 1 << " = " << jacob[j] <<  " --> " << aux[i] <<std::endl;
-        // }
-        // else if (j == (jacob.size() - 1))
-        // {
-        //     //TODO: RELLLENAR desde ese indice hasta el final
-        // }
-      }   
-    }
+    // for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = pares.begin(); it != pares.end(); ++it)
+    // {
+    // }
 
-    std::cout << jacob[jacob.size() -1] <<std::endl;
-    std::cout << "----------" << std::endl;
-    printVector(res);
-    // std::cout << "---------------" << std::endl;
-    return aux;
+    // std::cout << "----------" << std::endl;
+    for (size_t i = 0; i < jacob.size(); ++i)
+    {
+        int index = jacob[i] - 1;
+        if (index < (int)aux.size())
+        {    
+            std::vector<int>::iterator pos = std::lower_bound(res.begin(), res.end(), aux[index]);
+            res.insert(pos, aux[index]);
+        }
+    }
+    for (int i = aux.size() - 1; i >= 0; --i)
+    {
+        bool alreadyInserted = false;
+        for (size_t j = 0; j < jacob.size(); ++j)
+        {
+            if (jacob[j] - 1 == i)
+            {
+                alreadyInserted = true;
+                break;
+            }
+        }
+        if (!alreadyInserted)
+        {
+            std::vector<int>::iterator pos = std::lower_bound(res.begin(), res.end(), aux[i]);
+            res.insert(pos, aux[i]);
+        }
+    }
+if (vec.size() % 2 != 0)
+{
+    std::vector<int>::iterator pos = std::lower_bound(res.begin(), res.end(), vec.back());
+    res.insert(pos, vec.back());
 }
+    return res;
+}
+
