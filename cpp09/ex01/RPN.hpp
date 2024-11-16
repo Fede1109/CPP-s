@@ -2,7 +2,7 @@
 #define RPN_HPP
 #include <iostream>
 #include <stack>
-#include <limits>
+#include <climits>
 class RPN
 {
 private:
